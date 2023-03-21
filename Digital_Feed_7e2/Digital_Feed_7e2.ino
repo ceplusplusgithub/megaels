@@ -4,17 +4,17 @@
 // Hardware params
 // Each time you change these, Cone_Info and Thread_Info tables below must be re-calculated
 
-#define ENC_LINE_PER_REV     600      // Encoder lines per 1 spindle turn
+#define ENC_LINE_PER_REV     3600      // Encoder lines per 1 spindle turn (encoder counts 1800 multiple 2:1 belt drive makes 3600 results in 7200 ticks per rev)
 #define MOTOR_Z_STEP_PER_REV 200      // Z motor steps (leadscrew) - almost always 200, microsteps configured below
-#define SCREW_Z              200      // Z (leadscrew) pitch, in hundreds of a mm
+#define SCREW_Z              96      // Z (leadscrew) pitch, in hundreds of a mm (pitch is 5mm, but there is a 1:5 gear in front, minus 4 correction empirically)
 #define McSTEP_Z             4        // Z driver microsteps (400 steps = 2, 800 steps = 4, etc)
 #define Z_INVERT                      // Comment this line if Z motor is connected directly to the lead screw, uncomment if via belt
 // #define Z_ENA_INVERT                  // Comment/uncomment this line if Z motor is getting disabled when it should be enabled
 #define MOTOR_X_STEP_PER_REV 200      // X motor steps (cross-slide) - almost always 200, microsteps configured below
-#define SCREW_X              42       // X (cross-slide) pitch, in hundreds of a mm
-#define REBOUND_X            200      // X backlash in microsteps
-#define REBOUND_Z            200      // Z backlash in microsteps
-#define McSTEP_X             2        // Z driver microsteps (400 steps = 2, 800 steps = 4, etc)
+#define SCREW_X              400       // X (cross-slide) pitch, in hundreds of a mm
+#define REBOUND_X            0      // X backlash in microsteps
+#define REBOUND_Z            0      // Z backlash in microsteps
+#define McSTEP_X             8        // X driver microsteps (400 steps = 2, 800 steps = 4, etc)
 //
 #define THRD_ACCEL           25       // K. division from which we will accelerate on Threads, Accel+Ks should be < 255
 #define FEED_ACCEL           3        // Rigidity of acceleration at feeds, more value - shorter acceleration.
@@ -31,7 +31,7 @@
                                                       // Acceleration duration = 150/2*REPEAT(4)/Microstep(4) = 75 full steps for acceleration
 // Manual pulse generator (100 lines)
 #define HC_SCALE_1           1        // 1st position, scale = 100/tick = 1mm/rev
-#define HC_SCALE_10          10       // 2nd position, scale = 1000/tick = 10mm/revolution
+#define HC_SCALE_10          10        // 2nd position, scale = 1000/tick = 10mm/revolution
 #define HC_START_SPEED_1     250      // MPG start, 250000/(250+1)/800*60/2 = 37rpm
 #define HC_MAX_SPEED_1       150      // maximum MPG speed, 250000/(150+1)/800*60/2 = 62rpm
 #define HC_START_SPEED_10    150      // MPG start, 250000/(150+1)/800*60/2 = 62rpm
@@ -42,18 +42,20 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 #define a  (uint32_t)(ENC_LINE_PER_REV / ((float)MOTOR_Z_STEP_PER_REV * McSTEP_Z * MIN_FEED / SCREW_Z) /2 +0.5)
+//
 static_assert(a <= 255, "Invalid value MIN_FEED");
 #define b  (uint32_t)(ENC_LINE_PER_REV / ((float)MOTOR_Z_STEP_PER_REV * McSTEP_Z * MAX_FEED / SCREW_Z) /2 +0.5)
-static_assert(b > 1, "Invalid value MAX_FEED");
+static_assert(b > 1, "Invalid value MAX_FEED Axis Z");
 #define c  250000 / ((uint32_t)MIN_aFEED * MOTOR_Z_STEP_PER_REV * McSTEP_Z / ((uint32_t)60 * SCREW_Z / 100) * 2) -1
 static_assert(c <= 65535, "Invalid value MIN_aFEED");
 #define d  250000 / ((uint32_t)MAX_aFEED * MOTOR_Z_STEP_PER_REV * McSTEP_Z / ((uint32_t)60 * SCREW_Z / 100) * 2) -1
 static_assert(d > 1, "Invalid value MAX_aFEED");
 
 #define e  (uint32_t)(ENC_LINE_PER_REV / ((float)MOTOR_X_STEP_PER_REV * McSTEP_X * MIN_FEED / SCREW_X) /2 +0.5)
+//
 static_assert(e <= 255, "Invalid value MIN_FEED");
 #define f  (uint32_t)(ENC_LINE_PER_REV / ((float)MOTOR_X_STEP_PER_REV * McSTEP_X * MAX_FEED / SCREW_X) /2 +0.5)
-static_assert(f > 1, "Invalid value MAX_FEED");
+static_assert(f > 1, "Invalid value MAX_FEED Axis X");
 #define g  250000 / ((uint32_t)MIN_aFEED * MOTOR_X_STEP_PER_REV * McSTEP_X / ((uint32_t)60 * SCREW_X / 100) * 2) -1
 static_assert(g <= 65535, "Invalid value MIN_aFEED");
 #define h  250000 / ((uint32_t)MAX_aFEED * MOTOR_X_STEP_PER_REV * McSTEP_X / ((uint32_t)60 * SCREW_X / 100) * 2) -1
@@ -285,29 +287,32 @@ struct cone_info_type
 // This table must be re-calculated each time hardware parameters
 //  at the top change. Use tables.html to find the new values.
 const cone_info_type Cone_Info[] = {
-  {  0, 8400, "45dg"},
-  { 32, 2762, " KM0"}, // 1:19.212
-  { 33, 6790, " KM1"}, // 1:20.047
-  { 33, 6336, " KM2"}, // 1:20.02
-  { 33, 4690, " KM3"}, // 1:19.922
-  { 32, 3467, " KM4"}, // 1:19.254
-  { 31, 9234, " KM5"}, // 1:19.002
-  { 32, 2224, " KM6"}, // 1:19.18
-  {  6, 7200, " 1:4"}, // 1:4
-  {  8, 4000, " 1:5"}, // 1:5
-  { 11, 7600, " 1:7"}, // 1:7
-  { 16, 8000, "1:10"}, // 1:10
-  { 26, 8800, "1:16"}, // 1:16
-  { 33, 6000, "1:20"}, // 1:20
-  { 40, 3200, "1:24"}, // 1:24
-  { 50, 4000, "1:30"}, // 1:30
-  { 84,    0, "1:50"}, // 1:50
-  { 15, 3600, "7:64"}, // 7:64
-  {  5, 9769, " 8dg"},
-  {  4, 7639, "10dg"},
-  {  3, 1349, "15dg"},
-  {  1, 4549, "30dg"},
+  {  8, 3333, "45dg"},
+  {320, 2000, " KM0"}, // 1:19.212
+  {334, 1167, " KM1"}, // 1:20.047
+  {333, 6667, " KM2"}, // 1:20.02
+  {332,  333, " KM3"}, // 1:19.922
+  {320, 9000, " KM4"}, // 1:19.254
+  {316, 7000, " KM5"}, // 1:19.002
+  {319, 6667, " KM6"}, // 1:19.18
+  { 66, 6667, " 1:4"}, // 1:4
+  { 83, 3333, " 1:5"}, // 1:5
+  {116, 6667, " 1:7"}, // 1:7
+  {166, 6667, "1:10"}, // 1:10
+  {266, 6667, "1:16"}, // 1:16
+  {333, 3333, "1:20"}, // 1:20
+  {400,    0, "1:24"}, // 1:24
+  {500,    0, "1:30"}, // 1:30
+  {833, 3333, "1:50"}, // 1:50
+  {152, 3810, "7:64"}, // 7:64
+  { 59, 2947, " 8dg"},
+  { 47, 2607, "10dg"},
+  { 31, 1004, "15dg"},
+  { 14, 4338, "30dg"},
 };
+
+
+
 #define TOTAL_CONE (sizeof(Cone_Info) / sizeof(Cone_Info[0]))
 
 
@@ -326,55 +331,55 @@ struct thread_info_type
 // This table must be re-calculated each time hardware parameters
 //  at the top change. Use tables.html to find the new values.
 const thread_info_type Thread_Info[] = {
-  { 12,    0,   5,  400, "0.25mm", 0.250, 4, " 750rpm"},
-  { 10,    0,   4, 2000, "0.30mm", 0.300, 4, " 750rpm"},
-  {  8, 5714,   3, 6000, "0.35mm", 0.350, 4, " 750rpm"},
-  {  7, 5000,   3, 1500, "0.40mm", 0.400, 4, " 750rpm"},
-  {  6,    0,   2, 5200, "0.50mm", 0.500, 4, " 750rpm"},
-  {  5,    0,   2, 1000, "0.60mm", 0.600, 4, " 750rpm"},
-  {  4, 2857,   1, 8000, "0.70mm", 0.700, 4, " 750rpm"},
-  {  4,    0,   1, 6800, "0.75mm", 0.750, 5, " 750rpm"},
-  {  3, 7500,   1, 5750, "0.80mm", 0.800, 5, " 700rpm"},
-  {  3,    0,   1, 2600, "1.00mm", 1.000, 6, " 560rpm"},
-  {  2, 4000,   1,   80, "1.25mm", 1.250, 7, " 460rpm"},
-  {  2,    0,   0, 8400, "1.50mm", 1.500, 7, " 380rpm"},
-  {  1, 7143,   0, 7200, "1.75mm", 1.750, 8, " 320rpm"},
-  {  1, 5000,   0, 6300, "2.00mm", 2.000, 9, " 280rpm"},
-  {  1, 2000,   0, 5040, "2.50mm", 2.500, 11, " 220rpm"},
-  {  1,    0,   0, 4200, "3.00mm", 3.000, 15, " 190rpm"},
-  {  0, 7500,   0, 3150, "4.00mm", 4.000, 22, " 140rpm"},
+  { 34, 5600, 144,    0, "0.25mm", 0.250, 4, " 750rpm"},
+  { 28, 8000, 120,    0, "0.30mm", 0.300, 4, " 750rpm"},
+  { 24, 6857, 102, 8571, "0.35mm", 0.350, 4, " 750rpm"},
+  { 21, 6000,  90,    0, "0.40mm", 0.400, 4, " 750rpm"},
+  { 17, 2800,  72,    0, "0.50mm", 0.500, 4, " 750rpm"},
+  { 14, 4000,  60,    0, "0.60mm", 0.600, 4, " 750rpm"},
+  { 12, 3429,  51, 4286, "0.70mm", 0.700, 4, " 750rpm"},
+  { 11, 5200,  48,    0, "0.75mm", 0.750, 5, " 750rpm"},
+  { 10, 8000,  45,    0, "0.80mm", 0.800, 5, " 700rpm"},
+  {  8, 6400,  36,    0, "1.00mm", 1.000, 6, " 560rpm"},
+  {  6, 9120,  28, 8000, "1.25mm", 1.250, 7, " 460rpm"},
+  {  5, 7600,  24,    0, "1.50mm", 1.500, 7, " 380rpm"},
+  {  4, 9371,  20, 5714, "1.75mm", 1.750, 8, " 320rpm"},
+  {  4, 3200,  18,    0, "2.00mm", 2.000, 9, " 280rpm"},
+  {  3, 4560,  14, 4000, "2.50mm", 2.500, 11, " 220rpm"},
+  {  2, 8800,  12,    0, "3.00mm", 3.000, 15, " 190rpm"},
+  {  2, 1600,   9,    0, "4.00mm", 4.000, 22, " 140rpm"},
 
-  {  9, 4488,   3, 9685, "80tpi ", 0.318, 4, " 750rpm"},
-  {  8, 5039,   3, 5717, "72tpi ", 0.353, 4, " 750rpm"},
-  {  7, 5591,   3, 1748, "64tpi ", 0.397, 4, " 750rpm"},
-  {  7,  866,   2, 9764, "60tpi ", 0.423, 4, " 750rpm"},
-  {  6, 6142,   2, 7780, "56tpi ", 0.454, 4, " 750rpm"},
-  {  5, 6693,   2, 3811, "48tpi ", 0.529, 4, " 750rpm"},
-  {  5, 1969,   2, 1827, "44tpi ", 0.577, 4, " 750rpm"},
-  {  4, 7244,   1, 9843, "40tpi ", 0.635, 4, " 750rpm"},
-  {  4, 2520,   1, 7858, "36tpi ", 0.706, 5, " 750rpm"},
-  {  3, 7795,   1, 5874, "32tpi ", 0.794, 5, " 710rpm"},
-  {  3, 3071,   1, 3890, "28tpi ", 0.907, 5, " 650rpm"},
-  {  3, 1890,   1, 3394, "27tpi ", 0.941, 5, " 600rpm"},
-  {  3,  709,   1, 2898, "26tpi ", 0.977, 6, " 570rpm"},
-  {  2, 8346,   1, 1906, "24tpi ", 1.058, 6, " 500rpm"},
-  {  2, 5984,   1,  913, "22tpi ", 1.155, 6, " 450rpm"},
-  {  2, 3622,   0, 9921, "20tpi ", 1.270, 7, " 440rpm"},
-  {  2, 2441,   0, 9425, "19tpi ", 1.337, 7, " 420rpm"},
-  {  2, 1260,   0, 8929, "18tpi ", 1.411, 7, " 380rpm"},
-  {  1, 8898,   0, 7937, "16tpi ", 1.587, 8, " 350rpm"},
-  {  1, 6535,   0, 6945, "14tpi ", 1.814, 9, " 320rpm"},
-  {  1, 4173,   0, 5953, "12tpi ", 2.117, 10, " 270rpm"},
-  {  1, 1811,   0, 4961, "10tpi ", 2.540, 11, " 220rpm"},
-  {  1,  630,   0, 4465, " 9tpi ", 2.822, 14, " 190rpm"},
-  {  0, 9449,   0, 3969, " 8tpi ", 3.175, 16, " 170rpm"},
-  {  0, 8268,   0, 3472, " 7tpi ", 3.629, 19, " 150rpm"},
-  {  0, 7087,   0, 2976, " 6tpi ", 4.233, 24, " 140rpm"},
+  { 27, 2126, 113, 3858, "80tpi ", 0.318, 4, " 750rpm"},
+  { 24, 4913, 102,  472, "72tpi ", 0.353, 4, " 750rpm"},
+  { 21, 7701,  90, 7087, "64tpi ", 0.397, 4, " 750rpm"},
+  { 20, 4094,  85,  394, "60tpi ", 0.423, 4, " 750rpm"},
+  { 19,  488,  79, 3701, "56tpi ", 0.454, 4, " 750rpm"},
+  { 16, 3276,  68,  315, "48tpi ", 0.529, 4, " 750rpm"},
+  { 14, 9669,  62, 3622, "44tpi ", 0.577, 4, " 750rpm"},
+  { 13, 6063,  56, 6929, "40tpi ", 0.635, 4, " 750rpm"},
+  { 12, 2457,  51,  236, "36tpi ", 0.706, 5, " 750rpm"},
+  { 10, 8850,  45, 3543, "32tpi ", 0.794, 5, " 710rpm"},
+  {  9, 5244,  39, 6850, "28tpi ", 0.907, 5, " 650rpm"},
+  {  9, 1843,  38, 2677, "27tpi ", 0.941, 5, " 600rpm"},
+  {  8, 8441,  36, 8504, "26tpi ", 0.977, 6, " 570rpm"},
+  {  8, 1638,  34,  157, "24tpi ", 1.058, 6, " 500rpm"},
+  {  7, 4835,  31, 1811, "22tpi ", 1.155, 6, " 450rpm"},
+  {  6, 8031,  28, 3465, "20tpi ", 1.270, 7, " 440rpm"},
+  {  6, 4630,  26, 9291, "19tpi ", 1.337, 7, " 420rpm"},
+  {  6, 1228,  25, 5118, "18tpi ", 1.411, 7, " 380rpm"},
+  {  5, 4425,  22, 6772, "16tpi ", 1.587, 8, " 350rpm"},
+  {  4, 7622,  19, 8425, "14tpi ", 1.814, 9, " 320rpm"},
+  {  4,  819,  17,   79, "12tpi ", 2.117, 10, " 270rpm"},
+  {  3, 4016,  14, 1732, "10tpi ", 2.540, 11, " 220rpm"},
+  {  3,  614,  12, 7559, " 9tpi ", 2.822, 14, " 190rpm"},
+  {  2, 7213,  11, 3386, " 8tpi ", 3.175, 16, " 170rpm"},
+  {  2, 3811,   9, 9213, " 7tpi ", 3.629, 19, " 150rpm"},
+  {  2,  409,   8, 5039, " 6tpi ", 4.233, 24, " 140rpm"},
 };
 #define TOTAL_THREADS (sizeof(Thread_Info) / sizeof(Thread_Info[0]))
 #define PASS_FINISH   3 // THRD_PS_FN ???
 
-#define Thrd_Accel_Err Thread_Info[0].Ks_Div_Z                 // acceleration set incorrectly
+//#define Thrd_Accel_Err Thread_Info[0].Ks_Div_Z                 // acceleration set incorrectly
 //static_assert(Thrd_Accel_Err + THRD_ACCEL <= 255, "Invalid value THRD_ACCEL");
 
 

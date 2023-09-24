@@ -3,7 +3,7 @@
 
 // Hardware params
 // Each time you change these, Cone_Info and Thread_Info tables below must be re-calculated
-
+#define DELAY                80       // Enabling stepper motors is followed by a short delay, maybee to let the drivers take time to do their job
 #define ENC_LINE_PER_REV     3600      // Encoder lines per 1 spindle turn (encoder counts 1800 multiple 2:1 belt drive makes 3600 results in 7200 ticks per rev)
 #define MOTOR_Z_STEP_PER_REV 200      // Z motor steps (leadscrew) - almost always 200, microsteps configured below
 #define SCREW_Z              500      // Z (leadscrew) pitch, in hundreds of a mm (was: 96 pitch is 5mm, but there is a 1:5 gear in front, minus 4 correction empirically)
@@ -114,16 +114,16 @@ char LCD_Row_2[17];
 #define Motor_X_CCW()          PORTL |= (1<<5)     // Pin44 1
 
 #ifdef Z_ENA_INVERT
-  #define Motor_Z_Enable()   do {PORTL &= ~(1<<4); _delay_ms(120);} while(0)  // Pin45 0
+  #define Motor_Z_Enable()   do {PORTL &= ~(1<<4); _delay_ms(DELAY);} while(0)  // Pin45 0
   #define Motor_Z_Disable()      PORTL |= (1<<4)                              // Pin45 1
   #define Read_Z_Ena_State       !(PINL & (1<<4))
 #else
-  #define Motor_Z_Enable()   do {PORTL |= (1<<4); _delay_ms(120);} while(0)   // Pin45 1
+  #define Motor_Z_Enable()   do {PORTL |= (1<<4); _delay_ms(DELAY);} while(0)   // Pin45 1
   #define Motor_Z_Disable()      PORTL &= ~(1<<4)                             // Pin45 0
   #define Read_Z_Ena_State       (PINL & (1<<4))
 #endif
 
-#define Motor_X_Enable()   do {PORTL |= (1<<3); _delay_ms(120);} while(0)   // Pin46 1
+#define Motor_X_Enable()   do {PORTL |= (1<<3); _delay_ms(DELAY);} while(0)   // Pin46 1
 #define Motor_X_Disable()      PORTL &= ~(1<<3)                             // Pin46 0
 #define Read_X_Ena_State       (PINL & (1<<3))
 

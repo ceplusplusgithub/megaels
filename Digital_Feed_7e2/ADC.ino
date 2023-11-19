@@ -1,11 +1,14 @@
 void Read_ADC_Feed()
 {
    /////////// Feed Variable ///////////
+   // 
    if (Mode == Mode_Feed || Mode == Mode_Cone_L || Mode == Mode_Cone_R || Mode == Mode_aFeed || Mode == Mode_Sphere)
    {
       int New_ADC_Feed = analogRead(A7);
+      // only read new value if it differs significantly from last cycle 
       if (New_ADC_Feed > ADC_Feed +4 || New_ADC_Feed < ADC_Feed -4)
       {
+         // first 16 cycles ADC_Feed value increases unintendedly? At the end ADC_Feed is the arithmetical average of the last 16 changed values
          if (++x > 15) {x = 0;}
          Sum_ADC = Sum_ADC - ADC_Array[x];
          ADC_Array[x] = New_ADC_Feed;
@@ -13,7 +16,7 @@ void Read_ADC_Feed()
          ADC_Feed = Sum_ADC /16;
       }
    }
-
+// != Mode_aFeed
    if (Mode == Mode_Feed || Mode == Mode_Cone_L || Mode == Mode_Cone_R || Mode == Mode_Sphere)
    {
       uint16_t Feed_mm_New = MAX_FEED - long(MAX_FEED - MIN_FEED + 1) * ADC_Feed / 1024;

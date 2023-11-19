@@ -19,7 +19,7 @@
 #define THRD_ACCEL           25       // K. division from which we will accelerate on Threads, Accel+Ks should be < 255
 #define FEED_ACCEL           3        // Rigidity of acceleration at feeds, more value - shorter acceleration.
 //
-#define MIN_FEED             8        // Min feed in 0.01mm. 2 = 0.02mm
+#define MIN_FEED             1        // Min feed in 0.01mm. 2 = 0.02mm
 #define MAX_FEED             40       // Max feed in 0.01mm. 20 = 0.20mm
 #define MIN_aFEED            20       // Min feed in mm/min. 20 = 20mm/min
 #define MAX_aFEED            400      // Max feed in mm/min. 400 = 400mm/min
@@ -471,10 +471,10 @@ const thread_info_type Thread_Info[] = {
 
 #define Enable_INT_OCR3A()    do {TCNT3 = 0; TIFR3 = (1<<OCF3A); TIMSK3 = (1<<OCIE3A);} while(0)
 #define Disable_INT_OCR3A()       TIMSK3 &= ~(1<<OCIE3A)
-
+// timer on output compare register, decoding hand-encoder
 #define Enable_INT_OCR3B()    do {TCNT3 = 0; TIFR3 = (1<<OCF3B); TIMSK3 = (1<<OCIE3B);} while(0)
 #define Disable_INT_OCR3B()       TIMSK3 &= ~(1<<OCIE3B)
-
+// timer on output compare register, decoding ?
 #define Enable_INT_OCR4A()    do {TCNT4 = 0; TIFR4 = (1<<OCF4A); TIMSK4 = (1<<OCIE4A);} while(0)
 #define Disable_INT_OCR4A()       TIMSK4 &= ~(1<<OCIE4A)
 
@@ -670,7 +670,7 @@ byte Pass_Nr = 1;
 long Null_X_Pos = 0;
 long Null_Z_Pos = 0;
 int Ap = 0;
-
+// last 16 different values of feed potentionmeter are stored in array 
 int ADC_Feed = 0;
 long Sum_ADC = 0;
 int ADC_Array[16];
@@ -778,6 +778,7 @@ void setup()
 void loop()
 {
   Spindle();
+  // position of feed potentiometer
   Read_ADC_Feed();
   if (KEYB_TIMER_FLAG != 0) Menu();
   
@@ -789,7 +790,7 @@ void loop()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// *****  Thread ***** ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// *****  Thread (and synchronous feed I guess) ***** ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ISR(INT0_vect)

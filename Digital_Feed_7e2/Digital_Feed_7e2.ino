@@ -3,7 +3,7 @@
 
 // Hardware params
 // Each time you change these, Cone_Info and Thread_Info tables below must be re-calculated
-#define DELAY                80       // Enabling stepper motors is followed by a short delay, maybee to let the drivers take time to do their job
+#define DELAY                80       // Enabling stepper motors is followed by a short delay, maybe to let the drivers take time to do their job. 
 #define ENC_LINE_PER_REV     3600      // Encoder lines per 1 spindle turn (encoder counts 1800 multiple 2:1 belt drive makes 3600 results in 7200 ticks per rev)
 #define MOTOR_Z_STEP_PER_REV 200      // Z motor steps (leadscrew) - almost always 200, microsteps configured below
 #define SCREW_Z              500      // Z (leadscrew) pitch, in hundreds of a mm (was: 96 pitch is 5mm, but there is a 1:5 gear in front, minus 4 correction empirically)
@@ -282,32 +282,7 @@ struct cone_info_type
   int  Cm_Div;
   char Cone_Print[6];
 };
-// This table must be re-calculated each time hardware parameters
-//  at the top change. Use tables.html to find the new values.
-// const cone_info_type Cone_Info[] = {
-//   {  8, 3333, "45dg"},
-//   {320, 2000, " KM0"}, // 1:19.212
-//   {334, 1167, " KM1"}, // 1:20.047
-//   {333, 6667, " KM2"}, // 1:20.02
-//   {332,  333, " KM3"}, // 1:19.922
-//   {320, 9000, " KM4"}, // 1:19.254
-//   {316, 7000, " KM5"}, // 1:19.002
-//   {319, 6667, " KM6"}, // 1:19.18
-//   { 66, 6667, " 1:4"}, // 1:4
-//   { 83, 3333, " 1:5"}, // 1:5
-//   {116, 6667, " 1:7"}, // 1:7
-//   {166, 6667, "1:10"}, // 1:10
-//   {266, 6667, "1:16"}, // 1:16
-//   {333, 3333, "1:20"}, // 1:20
-//   {400,    0, "1:24"}, // 1:24
-//   {500,    0, "1:30"}, // 1:30
-//   {833, 3333, "1:50"}, // 1:50
-//   {152, 3810, "7:64"}, // 7:64
-//   { 59, 2947, " 8dg"},
-//   { 47, 2607, "10dg"},
-//   { 31, 1004, "15dg"},
-//   { 14, 4338, "30dg"},
-// };
+
 
 const cone_info_type Cone_Info[] = {
   {  1, 6000, "45dg"},
@@ -350,55 +325,6 @@ struct thread_info_type
   byte Pass;
   char Limit_Print[8];
 };
-// This table must be re-calculated each time hardware parameters
-//  at the top change. Use tables.html to find the new values.
-// const thread_info_type Thread_Info[] = {
-//   { 34, 5600, 144,    0, "0.25mm", 0.250, 4, " 750rpm"},
-//   { 28, 8000, 120,    0, "0.30mm", 0.300, 4, " 750rpm"},
-//   { 24, 6857, 102, 8571, "0.35mm", 0.350, 4, " 750rpm"},
-//   { 21, 6000,  90,    0, "0.40mm", 0.400, 4, " 750rpm"},
-//   { 17, 2800,  72,    0, "0.50mm", 0.500, 4, " 750rpm"},
-//   { 14, 4000,  60,    0, "0.60mm", 0.600, 4, " 750rpm"},
-//   { 12, 3429,  51, 4286, "0.70mm", 0.700, 4, " 750rpm"},
-//   { 11, 5200,  48,    0, "0.75mm", 0.750, 5, " 750rpm"},
-//   { 10, 8000,  45,    0, "0.80mm", 0.800, 5, " 700rpm"},
-//   {  8, 6400,  36,    0, "1.00mm", 1.000, 6, " 560rpm"},
-//   {  6, 9120,  28, 8000, "1.25mm", 1.250, 7, " 460rpm"},
-//   {  5, 7600,  24,    0, "1.50mm", 1.500, 7, " 380rpm"},
-//   {  4, 9371,  20, 5714, "1.75mm", 1.750, 8, " 320rpm"},
-//   {  4, 3200,  18,    0, "2.00mm", 2.000, 9, " 280rpm"},
-//   {  3, 4560,  14, 4000, "2.50mm", 2.500, 11, " 220rpm"},
-//   {  2, 8800,  12,    0, "3.00mm", 3.000, 15, " 190rpm"},
-//   {  2, 1600,   9,    0, "4.00mm", 4.000, 22, " 140rpm"},
-//   {  1, 7280,   7, 2000, "5.00mm", 5.000, 24, " 100rpm"},
-
-//   { 27, 2126, 113, 3858, "80tpi ", 0.318, 4, " 750rpm"},
-//   { 24, 4913, 102,  472, "72tpi ", 0.353, 4, " 750rpm"},
-//   { 21, 7701,  90, 7087, "64tpi ", 0.397, 4, " 750rpm"},
-//   { 20, 4094,  85,  394, "60tpi ", 0.423, 4, " 750rpm"},
-//   { 19,  488,  79, 3701, "56tpi ", 0.454, 4, " 750rpm"},
-//   { 16, 3276,  68,  315, "48tpi ", 0.529, 4, " 750rpm"},
-//   { 14, 9669,  62, 3622, "44tpi ", 0.577, 4, " 750rpm"},
-//   { 13, 6063,  56, 6929, "40tpi ", 0.635, 4, " 750rpm"},
-//   { 12, 2457,  51,  236, "36tpi ", 0.706, 5, " 750rpm"},
-//   { 10, 8850,  45, 3543, "32tpi ", 0.794, 5, " 710rpm"},
-//   {  9, 5244,  39, 6850, "28tpi ", 0.907, 5, " 650rpm"},
-//   {  9, 1843,  38, 2677, "27tpi ", 0.941, 5, " 600rpm"},
-//   {  8, 8441,  36, 8504, "26tpi ", 0.977, 6, " 570rpm"},
-//   {  8, 1638,  34,  157, "24tpi ", 1.058, 6, " 500rpm"},
-//   {  7, 4835,  31, 1811, "22tpi ", 1.155, 6, " 450rpm"},
-//   {  6, 8031,  28, 3465, "20tpi ", 1.270, 7, " 440rpm"},
-//   {  6, 4630,  26, 9291, "19tpi ", 1.337, 7, " 420rpm"},
-//   {  6, 1228,  25, 5118, "18tpi ", 1.411, 7, " 380rpm"},
-//   {  5, 4425,  22, 6772, "16tpi ", 1.587, 8, " 350rpm"},
-//   {  4, 7622,  19, 8425, "14tpi ", 1.814, 9, " 320rpm"},
-//   {  4,  819,  17,   79, "12tpi ", 2.117, 10, " 270rpm"},
-//   {  3, 4016,  14, 1732, "10tpi ", 2.540, 11, " 220rpm"},
-//   {  3,  614,  12, 7559, " 9tpi ", 2.822, 14, " 190rpm"},
-//   {  2, 7213,  11, 3386, " 8tpi ", 3.175, 16, " 170rpm"},
-//   {  2, 3811,   9, 9213, " 7tpi ", 3.629, 19, " 150rpm"},
-//   {  2,  409,   8, 5039, " 6tpi ", 4.233, 24, " 140rpm"},
-// };
 
 const thread_info_type Thread_Info[] = {
   {720,    0, 576,    0, "0.25mm", 0.250, 4, " 750rpm"},
@@ -1420,3 +1346,3922 @@ ISR (TIMER3_COMPB_vect)
 
 
 // ***** End ***** ///////////////////////////////////////////////////
+void Read_ADC_Feed()
+{
+   /////////// Feed Variable ///////////
+   // 
+   if (Mode == Mode_Feed || Mode == Mode_Cone_L || Mode == Mode_Cone_R || Mode == Mode_aFeed || Mode == Mode_Sphere)
+   {
+      int New_ADC_Feed = analogRead(A7);
+      // only read new value if it differs significantly from last cycle 
+      if (New_ADC_Feed > ADC_Feed +4 || New_ADC_Feed < ADC_Feed -4)
+      {
+         // first 16 cycles ADC_Feed value increases unintendedly? At the end ADC_Feed is the arithmetical average of the last 16 changed values
+         if (++x > 15) {x = 0;}
+         Sum_ADC = Sum_ADC - ADC_Array[x];
+         ADC_Array[x] = New_ADC_Feed;
+         Sum_ADC = Sum_ADC + New_ADC_Feed;
+         ADC_Feed = Sum_ADC /16;
+      }
+   }
+// != Mode_aFeed
+   if (Mode == Mode_Feed || Mode == Mode_Cone_L || Mode == Mode_Cone_R || Mode == Mode_Sphere)
+   {
+      uint16_t Feed_mm_New = MAX_FEED - long(MAX_FEED - MIN_FEED + 1) * ADC_Feed / 1024;
+      if (Feed_mm_New != Feed_mm)
+      {
+         Feed_mm = Feed_mm_New;
+         Print();
+         Beep();
+
+         switch (Mode)
+         {
+            case Mode_Feed:    ////////////////////////////////
+            if (Joy_Z_flag == ON && Button_Rapid != 0 && Step_Z_flag == ON)
+            {
+               b_flag = false;
+               if (Motor_Z_Dir == ZCW) {Feed_Left(a_flag, b_flag);}
+               else                   {Feed_Right(a_flag, b_flag);}
+            }
+            else if (Joy_X_flag == ON && Button_Rapid != 0 && Step_X_flag == ON)
+            {
+               b_flag = false;
+               if (Motor_X_Dir == CW) {Feed_Front(a_flag, b_flag);}
+               else                   {Feed_Rear(a_flag, b_flag);} 
+            }
+            break;
+
+            case Mode_Cone_L:    ////////////////////////////////
+            case Mode_Cone_R:    ////////////////////////////////
+            if (Joy_Z_flag == ON && Button_Rapid != 0  && Step_Z_flag == ON)
+            {
+               b_flag = false;
+               if (Motor_Z_Dir == ZCW) {Cone_Left(a_flag, b_flag);}
+               else                   {Cone_Right(a_flag, b_flag);}
+            }
+            else if (Joy_X_flag == ON && Button_Rapid != 0 && Step_X_flag == ON)
+            {
+               b_flag = false;
+               if (Motor_X_Dir == CW) {Feed_Front(a_flag, b_flag);}
+               else                   {Feed_Rear(a_flag, b_flag);}
+            }
+            break;
+         }
+      }
+   }
+
+   else if (Mode == Mode_aFeed)
+   {
+      uint16_t aFeed_mm_New = MAX_aFEED/10 - long(MAX_aFEED/10 - MIN_aFEED/10 + 1) * ADC_Feed / 1024;
+      aFeed_mm_New = (aFeed_mm_New * 10);
+      if (aFeed_mm_New != aFeed_mm)
+      {
+         aFeed_mm = aFeed_mm_New;
+         Print();
+         Beep();
+
+         switch (Mode)
+         {
+            case Mode_aFeed:     //////////////////////////////////
+            if (Joy_Z_flag == ON && Button_Rapid != 0  && Step_Z_flag == ON)
+            {
+               b_flag = false;
+               if (Motor_Z_Dir == ZCW) {aFeed_Left(a_flag, b_flag);}
+               else                   {aFeed_Right(a_flag, b_flag);}
+            }
+            else if (Joy_X_flag == ON && Button_Rapid != 0  && Step_X_flag == ON)
+            {
+               b_flag = false;
+               if (Motor_X_Dir == CW) {aFeed_Front(a_flag, b_flag);}
+               else                   {aFeed_Rear(a_flag, b_flag);}
+            }
+            break;
+         }
+      } 
+   } 
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Mode "Asynchronous Feed" ********** //////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void aFeed_Left(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+
+   Joy_X_flag = OFF;
+   feed_X_flag = OFF;
+   Start_Speed = (250000 / ((uint32_t)MIN_aFEED * MOTOR_Z_STEP_PER_REV * McSTEP_Z / ((uint32_t)60 * SCREW_Z / 100) * 2) - 1) /FEED_ACCEL;
+   if (Motor_Z_Pos < Limit_Pos_Left - Start_Speed * 2)
+   {
+      aFeed_Divisor = 250000 / ((uint32_t)aFeed_mm * MOTOR_Z_STEP_PER_REV * McSTEP_Z / ((uint32_t)60 * SCREW_Z / 100) * 2) - 1;
+      if (aFeed_Divisor < Start_Speed)
+      {
+         max_OCR4A = Start_Speed;
+         if (Step_Z_flag == OFF)
+         {
+            OCR4A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR4A = aFeed_Divisor;
+         OCR4A = aFeed_Divisor;
+      }
+   }
+   else
+   {
+      aFeed_Divisor = Start_Speed;
+      max_OCR4A = Start_Speed;
+      OCR4A = Start_Speed;
+   }
+   
+   Brake_Compens = (max_OCR4A - aFeed_Divisor) +1;
+   Limit_Pos = Limit_Pos_Left - Brake_Compens;
+
+   Motor_Z_Dir = ZCW;
+   Motor_Z_CW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+   
+   feed_Z_flag = ON;
+   Joy_Z_flag = ON;
+   Ena_INT_Z_aFeed();
+}
+
+/////////////////////////////////////////////
+void aFeed_Right(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+
+   Joy_X_flag = OFF;
+   feed_X_flag = OFF;
+   Start_Speed = (250000 / ((uint32_t)MIN_aFEED * MOTOR_Z_STEP_PER_REV * McSTEP_Z / ((uint32_t)60 * SCREW_Z / 100) * 2) - 1) /FEED_ACCEL;
+   if (Motor_Z_Pos > Limit_Pos_Right + Start_Speed * 2)
+   {
+      aFeed_Divisor = 250000 / ((uint32_t)aFeed_mm * MOTOR_Z_STEP_PER_REV * McSTEP_Z / ((uint32_t)60 * SCREW_Z / 100) * 2) - 1;
+      if (aFeed_Divisor < Start_Speed)
+      {
+         max_OCR4A = Start_Speed;
+         if (Step_Z_flag == OFF)
+         {
+            OCR4A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR4A = aFeed_Divisor;
+         OCR4A = aFeed_Divisor;
+      }
+   }
+   else
+   {
+      aFeed_Divisor = Start_Speed;
+      max_OCR4A = Start_Speed;
+      OCR4A = Start_Speed;
+   }
+   
+   Brake_Compens = (max_OCR4A - aFeed_Divisor) +1;
+   Limit_Pos = Limit_Pos_Right + Brake_Compens;
+
+   Motor_Z_Dir = ZCCW;
+   Motor_Z_CCW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+   
+   feed_Z_flag = ON;
+   Joy_Z_flag = ON;
+   Ena_INT_Z_aFeed();
+}
+
+void aFeed_Front(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+
+   Joy_Z_flag = OFF;
+   feed_Z_flag = OFF;
+   Start_Speed = (250000 / ((uint32_t)MIN_aFEED * MOTOR_X_STEP_PER_REV * McSTEP_X / ((uint32_t)60 * SCREW_X / 100) * 2) - 1) /FEED_ACCEL;
+   if (Motor_X_Pos < Limit_Pos_Front - Start_Speed * 2)
+   {
+      aFeed_Divisor = 250000 / ((uint32_t)aFeed_mm * MOTOR_X_STEP_PER_REV * McSTEP_X / ((uint32_t)60 * SCREW_X / 100) * 2) - 1;
+      if (aFeed_Divisor < Start_Speed)
+      {
+         max_OCR4A = Start_Speed;
+         if (Step_X_flag == OFF)
+         {
+            OCR4A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR4A = aFeed_Divisor;
+         OCR4A = aFeed_Divisor;
+      }
+   }
+   else
+   {
+      aFeed_Divisor = Start_Speed;
+      max_OCR4A = Start_Speed;
+      OCR4A = Start_Speed;
+   }
+   
+   Brake_Compens = (max_OCR4A - aFeed_Divisor) +1;
+   Limit_Pos = Limit_Pos_Front - Brake_Compens;
+
+   Motor_X_Dir = CW;
+   Motor_X_CW();
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   feed_X_flag = ON;
+   Joy_X_flag = ON;
+   Ena_INT_X_aFeed();
+}
+
+void aFeed_Rear(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+
+   Joy_Z_flag = OFF;
+   feed_Z_flag = OFF;
+   Start_Speed = (250000 / ((uint32_t)MIN_aFEED * MOTOR_X_STEP_PER_REV * McSTEP_X / ((uint32_t)60 * SCREW_X / 100) * 2) - 1) /FEED_ACCEL;
+   if (Motor_X_Pos > Limit_Pos_Rear + Start_Speed * 2)
+   {
+      aFeed_Divisor = 250000 / ((uint32_t)aFeed_mm * MOTOR_X_STEP_PER_REV * McSTEP_X / ((uint32_t)60 * SCREW_X / 100) * 2) - 1;
+      if (aFeed_Divisor < Start_Speed)
+      {
+         max_OCR4A = Start_Speed;
+         if (Step_X_flag == OFF)
+         {
+            OCR4A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR4A = aFeed_Divisor;
+         OCR4A = aFeed_Divisor;
+      }
+   }
+   else
+   {
+      aFeed_Divisor = Start_Speed;
+      max_OCR4A = Start_Speed;
+      OCR4A = Start_Speed;
+   }
+
+   Brake_Compens = (max_OCR4A - aFeed_Divisor) +1;
+   Limit_Pos = Limit_Pos_Rear + Brake_Compens;
+
+   Motor_X_Dir = CCW;
+   Motor_X_CCW();
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   feed_X_flag = ON;
+   Joy_X_flag = ON;
+   Ena_INT_X_aFeed();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void aFeed_Ext_Left()
+{
+  
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void aFeed_Int_Left()
+{
+  
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void aFeed_Ext_Right()
+{
+  
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void aFeed_Int_Right()
+{
+  
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Beeper ********** //////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Beep()
+{
+   Beeper_On();
+   _delay_ms(25);
+   Beeper_Off();
+}
+
+void BeepBeep()
+{
+   Beeper_On();
+   _delay_ms(25);
+   Beeper_Off();   
+   _delay_ms(200);
+   Beeper_On();
+   _delay_ms(25);
+   Beeper_Off();
+}
+
+void Beep_Error()
+{
+   Beeper_On();
+   _delay_ms(250);
+   Beeper_Off();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Cone Mode ********** //////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Cone_Left(bool & a_flag, bool & b_flag)
+{  
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+   
+   Cs_Divisor = Cone_Info[Cone_Step].Cs_Div;
+   Cm_Divisor = Cone_Info[Cone_Step].Cm_Div;
+
+   Start_Speed = ENC_LINE_PER_REV / ((uint32_t)MOTOR_Z_STEP_PER_REV * McSTEP_Z * MIN_FEED / SCREW_Z) / FEED_ACCEL /2;
+   if (Motor_Z_Pos < Limit_Pos_Left - Start_Speed * 2)
+   {
+      Feed_Divisor = ENC_LINE_PER_REV / ((uint32_t)MOTOR_Z_STEP_PER_REV * McSTEP_Z * Feed_mm / SCREW_Z) /2;
+      if (Feed_Divisor < Start_Speed)
+      {
+         max_OCR5A = Start_Speed;
+         if (Step_Z_flag == OFF)
+         {
+            OCR5A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR5A = Feed_Divisor;
+         OCR5A = Feed_Divisor;
+      }
+   }
+   else
+   {
+      Feed_Divisor = Start_Speed;
+      max_OCR5A = Start_Speed;
+      OCR5A = Start_Speed;
+   }
+   
+   Brake_Compens = max_OCR5A - Feed_Divisor + 1;
+   Limit_Pos = Limit_Pos_Left - Brake_Compens;
+
+   Motor_Z_Dir = ZCW;
+   Motor_Z_CW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+
+   if      (Mode == Mode_Cone_L) {Motor_X_Dir = CW; Motor_X_CW();}
+   else if (Mode == Mode_Cone_R) {Motor_X_Dir = CCW; Motor_X_CCW();}
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   feed_Z_flag = ON;
+   Step_X_flag = ON;
+   Joy_Z_flag = ON;
+   Ena_INT_Z_Feed();
+}
+
+void Cone_Right(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true; 
+   
+   Cs_Divisor = Cone_Info[Cone_Step].Cs_Div;
+   Cm_Divisor = Cone_Info[Cone_Step].Cm_Div;
+
+   Start_Speed = ENC_LINE_PER_REV / ((uint32_t)MOTOR_Z_STEP_PER_REV * McSTEP_Z * MIN_FEED / SCREW_Z) / FEED_ACCEL /2;
+   if (Motor_Z_Pos > Limit_Pos_Right + Start_Speed * 2)
+   {
+      Feed_Divisor = ENC_LINE_PER_REV / ((uint32_t)MOTOR_Z_STEP_PER_REV * McSTEP_Z * Feed_mm / SCREW_Z) /2;
+      if (Feed_Divisor < Start_Speed)
+      {
+         max_OCR5A = Start_Speed;
+         if (Step_Z_flag == OFF)
+         {
+            OCR5A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR5A = Feed_Divisor;
+         OCR5A = Feed_Divisor;
+      }
+   }
+   else
+   {
+      Feed_Divisor = Start_Speed;
+      max_OCR5A = Start_Speed;
+      OCR5A = Start_Speed;
+   }
+   
+   Brake_Compens = max_OCR5A - Feed_Divisor + 1;
+   Limit_Pos = Limit_Pos_Right + Brake_Compens;
+
+   Motor_Z_Dir = ZCCW;
+   Motor_Z_CCW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+
+   if      (Mode == Mode_Cone_L) {Motor_X_Dir = CCW; Motor_X_CCW();}
+   else if (Mode == Mode_Cone_R) {Motor_X_Dir = CW; Motor_X_CW();}
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   feed_Z_flag = ON;
+   Step_X_flag = ON;
+   Joy_Z_flag = ON;
+   Ena_INT_Z_Feed();
+}
+
+void Cone_Front(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+}
+
+void Cone_Rear(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true; 
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** "Cone! Fast Feed" mode ********** ///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Rapid_Cone_Left(bool & a_flag, bool & b_flag)
+{
+   if (a_flag == true) return;
+   b_flag = false;
+   a_flag = true;
+   
+   Brake_Compens = (MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt + 1;
+   Limit_Pos = Limit_Pos_Left - Brake_Compens;
+   
+   Cs_Count = 0;
+   Cm_Count = 0;            
+
+   Motor_Z_Dir = ZCW;
+   Motor_Z_CW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+
+   if      (Mode == Mode_Cone_L) {Motor_X_Dir = CW; Motor_X_CW();}
+   else if (Mode == Mode_Cone_R) {Motor_X_Dir = CCW; Motor_X_CCW();}
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   Joy_Z_flag = ON;
+   rapid_Z_flag = ON;
+   Step_X_flag = ON;
+   Ena_INT_Z_Rapid();
+}
+
+void Rapid_Cone_Right(bool & a_flag, bool & b_flag)
+{
+   if (a_flag == true) return;
+   b_flag = false;
+   a_flag = true;
+   
+   Brake_Compens = (MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt + 1;
+   Limit_Pos = Limit_Pos_Right + Brake_Compens;
+   
+   Cs_Count = 0;
+   Cm_Count = 0;            
+
+   Motor_Z_Dir = ZCCW;
+   Motor_Z_CCW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+
+   if      (Mode == Mode_Cone_L) {Motor_X_Dir = CCW; Motor_X_CCW();}
+   else if (Mode == Mode_Cone_R) {Motor_X_Dir = CW; Motor_X_CW();}
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   Joy_Z_flag = ON;
+   rapid_Z_flag = ON;
+   Step_X_flag = ON;
+   Ena_INT_Z_Rapid();  
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Feed mode ********** //////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Feed_Left(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+
+   Joy_X_flag = OFF;
+   feed_X_flag = OFF;
+   Start_Speed = ENC_LINE_PER_REV / ((float)MOTOR_Z_STEP_PER_REV * McSTEP_Z * MIN_FEED / SCREW_Z) / FEED_ACCEL /2 +0.5;
+   if (Motor_Z_Pos < Limit_Pos_Left - Start_Speed * 2)
+   {
+      Feed_Divisor = ENC_LINE_PER_REV / ((float)MOTOR_Z_STEP_PER_REV * McSTEP_Z * Feed_mm / SCREW_Z) /2 +0.5;
+      if (Feed_Divisor < Start_Speed)
+      {
+         max_OCR5A = Start_Speed;
+         if (Step_Z_flag == OFF)
+         {
+            OCR5A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR5A = Feed_Divisor;
+         OCR5A = Feed_Divisor;
+      }
+   }
+   else
+   {
+      Feed_Divisor = Start_Speed;
+      max_OCR5A = Start_Speed;
+      OCR5A = Start_Speed;
+   }
+   
+   Brake_Compens = max_OCR5A - Feed_Divisor + 1;
+   Limit_Pos = Limit_Pos_Left - Brake_Compens;
+
+   Motor_Z_Dir = ZCW;
+   Motor_Z_CW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+   
+   feed_Z_flag = ON;
+   Joy_Z_flag = ON;
+   Ena_INT_Z_Feed();
+}
+
+void Feed_Right(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+
+   Joy_X_flag = OFF;
+   feed_X_flag = OFF;
+   Start_Speed = ENC_LINE_PER_REV / ((float)MOTOR_Z_STEP_PER_REV * McSTEP_Z * MIN_FEED / SCREW_Z) / FEED_ACCEL /2 +0.5;
+   if (Motor_Z_Pos > Limit_Pos_Right + Start_Speed * 2)
+   {
+      Feed_Divisor = ENC_LINE_PER_REV / ((float)MOTOR_Z_STEP_PER_REV * McSTEP_Z * Feed_mm / SCREW_Z) /2 +0.5;
+      if (Feed_Divisor < Start_Speed)
+      {
+         max_OCR5A = Start_Speed;
+         if (Step_Z_flag == OFF)
+         {
+            OCR5A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR5A = Feed_Divisor;
+         OCR5A = Feed_Divisor;
+      }
+   }
+   else
+   {
+      Feed_Divisor = Start_Speed;
+      max_OCR5A = Start_Speed;
+      OCR5A = Start_Speed;
+   }
+   
+   Brake_Compens = (max_OCR5A - Feed_Divisor) + 1;
+   Limit_Pos = Limit_Pos_Right + Brake_Compens;
+
+   Motor_Z_Dir = ZCCW;
+   Motor_Z_CCW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+   
+   feed_Z_flag = ON;
+   Joy_Z_flag = ON;
+   Ena_INT_Z_Feed();
+}
+
+void Feed_Front(bool & a_flag, bool & b_flag)
+{  
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+
+   Joy_Z_flag = OFF;
+   feed_Z_flag = OFF;
+   Start_Speed = ENC_LINE_PER_REV / ((float)MOTOR_X_STEP_PER_REV * McSTEP_X * MIN_FEED / SCREW_X) / FEED_ACCEL /2 +0.5;
+   if (Motor_X_Pos < Limit_Pos_Front - Start_Speed * 2)
+   {
+      Feed_Divisor = ENC_LINE_PER_REV / ((float)MOTOR_X_STEP_PER_REV * McSTEP_X * Feed_mm / SCREW_X) /2 +0.5;
+      if (Feed_Divisor < Start_Speed)
+      {
+         max_OCR5A = Start_Speed;
+         if (Step_X_flag == OFF)
+         {
+            OCR5A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR5A = Feed_Divisor;
+         OCR5A = Feed_Divisor;
+      }
+   }
+   else
+   {
+      Feed_Divisor = Start_Speed;
+      max_OCR5A = Start_Speed;
+      OCR5A = Start_Speed;
+   }
+   
+   Brake_Compens = max_OCR5A - Feed_Divisor + 1;
+   Limit_Pos = Limit_Pos_Front - Brake_Compens;
+
+   Motor_X_Dir = CW;
+   Motor_X_CW();
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   feed_X_flag = ON;
+   Joy_X_flag = ON;
+   Ena_INT_X_Feed();
+   
+}
+
+void Feed_Rear(bool & a_flag, bool & b_flag)
+{
+   if (b_flag == true) return;
+   a_flag = false;
+   b_flag = true;
+
+   Joy_Z_flag = OFF;
+   feed_Z_flag = OFF;
+   Start_Speed = ENC_LINE_PER_REV / ((float)MOTOR_X_STEP_PER_REV * McSTEP_X * MIN_FEED / SCREW_X) / FEED_ACCEL /2 +0.5;
+   if (Motor_X_Pos > Limit_Pos_Rear + Start_Speed * 2)
+   {
+      Feed_Divisor = ENC_LINE_PER_REV / ((float)MOTOR_X_STEP_PER_REV * McSTEP_X * Feed_mm / SCREW_X) /2 +0.5;
+      if (Feed_Divisor < Start_Speed)
+      {
+         max_OCR5A = Start_Speed;
+         if (Step_X_flag == OFF)
+         {
+            OCR5A = Start_Speed;
+         }
+      }
+      else
+      {
+         max_OCR5A = Feed_Divisor;
+         OCR5A = Feed_Divisor;
+      }
+   }
+   else
+   {
+      Feed_Divisor = Start_Speed;
+      max_OCR5A = Start_Speed;
+      OCR5A = Start_Speed;
+   }
+
+   Brake_Compens = max_OCR5A - Feed_Divisor + 1;
+   Limit_Pos = Limit_Pos_Rear + Brake_Compens;
+
+   Motor_X_Dir = CCW;
+   Motor_X_CCW();
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   feed_X_flag = ON;
+   Joy_X_flag = ON;
+   Ena_INT_X_Feed();
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Mode "Quick Feed" ********** //////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Rapid_Feed_Left(bool & a_flag, bool & b_flag)
+{
+   if (a_flag == true) return;
+   b_flag = false;
+   a_flag = true;
+
+   Joy_X_flag = OFF;
+   feed_X_flag = OFF;
+   rapid_X_flag = OFF;
+   Brake_Compens = (MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt + 1;
+   Limit_Pos = Limit_Pos_Left - Brake_Compens;
+
+   Motor_Z_Dir = ZCW;
+   Motor_Z_CW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+   
+   Joy_Z_flag = ON;             
+   rapid_Z_flag = ON;
+   Ena_INT_Z_Rapid();
+}
+
+void Rapid_Feed_Right(bool & a_flag, bool & b_flag)
+{
+   if (a_flag == true) return;
+   b_flag = false;
+   a_flag = true;
+
+   Joy_X_flag = OFF;
+   feed_X_flag = OFF;
+   rapid_X_flag = OFF;
+   Brake_Compens = (MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt + 1;
+   Limit_Pos = Limit_Pos_Right + Brake_Compens;
+
+   Motor_Z_Dir = ZCCW;
+   Motor_Z_CCW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+   
+   Joy_Z_flag = ON;
+   rapid_Z_flag = ON;
+   Ena_INT_Z_Rapid();
+}
+
+void Rapid_Feed_Front(bool & a_flag, bool & b_flag)
+{
+   if (a_flag == true) return;
+   b_flag = false;
+   a_flag = true;
+
+   Joy_Z_flag = OFF;
+   feed_Z_flag = OFF;
+   rapid_Z_flag = OFF;
+   Brake_Compens = (MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt + 1;
+   Limit_Pos = Limit_Pos_Front - Brake_Compens;
+
+   Motor_X_Dir = CW;
+   Motor_X_CW();
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   Joy_X_flag = ON;
+   rapid_X_flag = ON;
+   Ena_INT_X_Rapid();
+}
+
+void Rapid_Feed_Rear(bool & a_flag, bool & b_flag)
+{
+   if (a_flag == true) return;
+   b_flag = false;
+   a_flag = true;
+
+   Joy_Z_flag = OFF;
+   feed_Z_flag = OFF;
+   rapid_Z_flag = OFF;
+   Brake_Compens = (MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt + 1;
+   Limit_Pos = Limit_Pos_Rear + Brake_Compens;
+
+   Motor_X_Dir = CCW;
+   Motor_X_CCW();
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   
+   Joy_X_flag = ON;
+   rapid_X_flag = ON;
+   Ena_INT_X_Rapid();
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Mode "Cycle Feed" ********** /////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Feed_Ext_Left()
+{
+   if ((Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear && Step_Z_flag == OFF) ||
+       (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Null_X_Pos && Step_Z_flag == OFF))
+   {  
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         a_flag = false;
+         b_flag = false;
+
+         long Infeed_Value = (int)((float)MOTOR_X_STEP_PER_REV * Ap / SCREW_X + 0.5) * McSTEP_X;
+         if (Infeed_Value == 0)
+         {
+            if (Pass_Nr == 1) Limit_Pos_Front = (Null_X_Pos + 1);
+            else              Limit_Pos_Front = (Limit_Pos_Rear + REBOUND_X);
+         }
+         else
+         {
+            if (Pass_Nr == 1) Limit_Pos_Front = (Null_X_Pos + Infeed_Value);
+            else              Limit_Pos_Front = (Limit_Pos_Rear + REBOUND_X + Infeed_Value);
+         }
+         Limit_Front_LED_On();
+         BeepBeep();
+         Feed_Front(a_flag, b_flag);
+      }
+      
+      else if (cycle_flag == false && Pass_Nr > Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+
+         Limit_Pos_Front = Limit_Pos_Rear + REBOUND_X ;
+         Feed_Front(a_flag, b_flag);
+
+         Limit_Front_LED_Off();
+         Limit_Rear_LED_Off();
+         Limit_Pos_Front = Limit_Pos_Max;
+         Limit_Pos_Rear = Limit_Pos_Min;
+         Pass_Total = 1;
+         Pass_Nr = 1;
+         Print();
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Front && Step_X_flag == OFF)
+   {
+      if (Pass_Nr <= Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+
+         Feed_Left(a_flag, b_flag);
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Front && Step_Z_flag == OFF)
+   {
+      cycle_flag = false;
+      a_flag = false;
+      b_flag = false;
+      
+      Limit_Pos_Rear = (Limit_Pos_Front - REBOUND_X);
+      Limit_Rear_LED_On();
+      Feed_Rear(a_flag, b_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Rear && Step_X_flag == OFF)
+   {
+      a_flag = false;
+      b_flag = false;
+
+      Pass_Nr++;
+      Print();
+      Rapid_Feed_Right(a_flag, b_flag);
+   }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void Feed_Ext_Right()
+{
+   if ((Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Rear && Step_Z_flag == OFF) ||
+       (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Null_X_Pos && Step_Z_flag == OFF))
+   {  
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         a_flag = false;
+         b_flag = false;
+         
+         long Infeed_Value = (int)((float)MOTOR_X_STEP_PER_REV * Ap / SCREW_X + 0.5) * McSTEP_X;
+         if (Infeed_Value == 0)
+         {
+            if (Pass_Nr == 1) Limit_Pos_Front = (Null_X_Pos + 1);
+            else              Limit_Pos_Front = (Limit_Pos_Rear + REBOUND_X);
+         }
+         else
+         {
+            if (Pass_Nr == 1) Limit_Pos_Front = (Null_X_Pos + Infeed_Value);
+            else              Limit_Pos_Front = (Limit_Pos_Rear + REBOUND_X + Infeed_Value);
+         }
+         Limit_Front_LED_On();
+         BeepBeep();
+         Feed_Front(a_flag, b_flag);
+      }
+
+      else if (cycle_flag == false && Pass_Nr > Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+         
+         Limit_Pos_Front = Limit_Pos_Rear + REBOUND_X;
+         Feed_Front(a_flag, b_flag);
+
+         Limit_Front_LED_Off();
+         Limit_Rear_LED_Off();
+         Limit_Pos_Front = Limit_Pos_Max;
+         Limit_Pos_Rear = Limit_Pos_Min;
+         Pass_Total = 1;
+         Pass_Nr = 1;
+         Print();
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Front && Step_X_flag == OFF)  
+   {
+      if (Pass_Nr <= Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+
+         Feed_Right(a_flag, b_flag);
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Front && Step_Z_flag == OFF)
+   {
+      cycle_flag = false;
+      a_flag = false;
+      b_flag = false;
+      
+      Limit_Pos_Rear = (Limit_Pos_Front - REBOUND_X);
+      Limit_Rear_LED_On();
+      Feed_Rear(a_flag, b_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear && Step_X_flag == OFF)
+   {
+      a_flag = false;
+      b_flag = false;
+
+      Pass_Nr++;
+      Print();
+      Rapid_Feed_Left(a_flag, b_flag);
+   }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void Feed_Int_Left()
+{
+   if ((Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Front && Step_Z_flag == OFF) ||
+       (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Null_X_Pos && Step_Z_flag == OFF))
+   {  
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         a_flag = false;
+         b_flag = false;
+
+         long Infeed_Value = (int)((float)MOTOR_X_STEP_PER_REV * Ap / SCREW_X + 0.5) * McSTEP_X;
+         if (Infeed_Value == 0)
+         {
+            if (Pass_Nr == 1) Limit_Pos_Rear = (Null_X_Pos - 1);
+            else              Limit_Pos_Rear = (Limit_Pos_Front - REBOUND_X);
+         }
+         else
+         {
+            if (Pass_Nr == 1) Limit_Pos_Rear = (Null_X_Pos - Infeed_Value);
+            else              Limit_Pos_Rear = (Limit_Pos_Front - REBOUND_X - Infeed_Value);
+         }
+         Limit_Rear_LED_On();
+         BeepBeep();
+         Feed_Rear(a_flag, b_flag);
+      }
+      
+      else if (cycle_flag == false && Pass_Nr > Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+         
+         Limit_Pos_Rear = Limit_Pos_Front - REBOUND_X;
+         Feed_Rear(a_flag, b_flag);
+
+         Limit_Front_LED_Off();
+         Limit_Rear_LED_Off();
+         Limit_Pos_Front = Limit_Pos_Max;
+         Limit_Pos_Rear = Limit_Pos_Min;
+         Pass_Total = 1;
+         Pass_Nr = 1;
+         Print();
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear && Step_X_flag == OFF)
+   {
+      if (Pass_Nr <= Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+
+         Feed_Left(a_flag, b_flag);
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Rear && Step_Z_flag == OFF)
+   {
+      cycle_flag = false;
+      a_flag = false;
+      b_flag = false;
+      
+      Limit_Pos_Front = (Limit_Pos_Rear + REBOUND_X);
+      Limit_Front_LED_On();
+      Feed_Front(a_flag, b_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Front && Step_X_flag == OFF)
+   {
+      a_flag = false;
+      b_flag = false;
+
+      Pass_Nr++;
+      Print();
+      Rapid_Feed_Right(a_flag, b_flag);
+   }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void Feed_Int_Right()
+{
+   if ((Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Front && Step_Z_flag == OFF) ||
+       (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Null_X_Pos && Step_Z_flag == OFF))
+   {  
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         a_flag = false;
+         b_flag = false;
+         
+         long Infeed_Value = (int)((float)MOTOR_X_STEP_PER_REV * Ap / SCREW_X + 0.5) * McSTEP_X;
+         if (Infeed_Value == 0)
+         {
+            if (Pass_Nr == 1) Limit_Pos_Rear = (Null_X_Pos - 1);
+            else              Limit_Pos_Rear = (Limit_Pos_Front - REBOUND_X);
+         }
+         else
+         {
+            if (Pass_Nr == 1) Limit_Pos_Rear = (Null_X_Pos - Infeed_Value);
+            else              Limit_Pos_Rear = (Limit_Pos_Front - REBOUND_X - Infeed_Value);
+         }
+         Limit_Rear_LED_On();
+         BeepBeep();
+         Feed_Rear(a_flag, b_flag);
+      }
+
+      else if (cycle_flag == false && Pass_Nr > Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+         
+         Limit_Pos_Rear = Limit_Pos_Front - REBOUND_X;
+         Feed_Rear(a_flag, b_flag);
+
+         Limit_Front_LED_Off();
+         Limit_Rear_LED_Off();
+         Limit_Pos_Front = Limit_Pos_Max;
+         Limit_Pos_Rear = Limit_Pos_Min;
+         Pass_Total = 1;
+         Pass_Nr = 1;
+         Print();
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Rear && Step_X_flag == OFF)
+   {
+      if (Pass_Nr <= Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+
+         Feed_Right(a_flag, b_flag);
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear && Step_Z_flag == OFF)
+   {
+      cycle_flag = false;
+      a_flag = false;
+      b_flag = false;
+      
+      Limit_Pos_Front = (Limit_Pos_Rear + REBOUND_X);
+      Limit_Front_LED_On();
+      Feed_Front(a_flag, b_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Front && Step_X_flag == OFF)
+   {
+      a_flag = false;
+      b_flag = false;
+
+      Pass_Nr++;
+      Print();
+      Rapid_Feed_Left(a_flag, b_flag);
+   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+void Feed_Ext_Front()
+{
+   if ((Motor_X_Pos == Limit_Pos_Rear && Motor_Z_Pos == Limit_Pos_Right && Step_X_flag == OFF) ||
+       (Motor_X_Pos == Limit_Pos_Rear && Motor_Z_Pos == Null_Z_Pos && Step_X_flag == OFF))
+   {  
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         a_flag = false;
+         b_flag = false;
+
+         long Infeed_Value = (int)((float)MOTOR_Z_STEP_PER_REV * Ap / SCREW_Z + 0.5) * McSTEP_Z;
+         if (Infeed_Value == 0)
+         {
+            if (Pass_Nr == 1) Limit_Pos_Left = (Null_Z_Pos + 1);
+            else              Limit_Pos_Left = (Limit_Pos_Right + REBOUND_Z);
+         }
+         else
+         {
+            if (Pass_Nr == 1) Limit_Pos_Left = (Null_Z_Pos + Infeed_Value);
+            else              Limit_Pos_Left = (Limit_Pos_Right + REBOUND_Z + Infeed_Value);
+         }
+         Limit_Left_LED_On();
+         BeepBeep();
+         Feed_Left(a_flag, b_flag);
+      }
+      
+      else if (cycle_flag == false && Pass_Nr > Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+         
+         Limit_Pos_Left = Limit_Pos_Right + REBOUND_Z;
+         Feed_Left(a_flag, b_flag);
+
+         Limit_Left_LED_Off();
+         Limit_Right_LED_Off();
+         Limit_Pos_Left = Limit_Pos_Max;
+         Limit_Pos_Right = Limit_Pos_Min;
+         Pass_Total = 1;
+         Pass_Nr = 1;
+         Print();
+      }
+   }
+
+   else if (Motor_X_Pos == Limit_Pos_Rear && Motor_Z_Pos == Limit_Pos_Left && Step_Z_flag == OFF)
+   {
+      if (Pass_Nr <= Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+
+         Feed_Front(a_flag, b_flag);
+      }
+   }
+
+   else if (Motor_X_Pos == Limit_Pos_Front && Motor_Z_Pos == Limit_Pos_Left && Step_X_flag == OFF)
+   {
+      cycle_flag = false;
+      a_flag = false;
+      b_flag = false;
+      
+      Limit_Pos_Right = (Limit_Pos_Left - REBOUND_Z);
+      Limit_Right_LED_On();
+      Feed_Right(a_flag, b_flag);
+   }
+
+   else if (Motor_X_Pos == Limit_Pos_Front && Motor_Z_Pos == Limit_Pos_Right && Step_Z_flag == OFF)
+   {
+      a_flag = false;
+      b_flag = false;
+
+      Pass_Nr++;
+      Print();
+      Rapid_Feed_Rear(a_flag, b_flag);
+   }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+void Feed_Ext_Rear()
+{
+   if ((Motor_X_Pos == Limit_Pos_Front && Motor_Z_Pos == Limit_Pos_Right && Step_X_flag == OFF) ||
+       (Motor_X_Pos == Limit_Pos_Front && Motor_Z_Pos == Null_Z_Pos && Step_X_flag == OFF))
+   {  
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         a_flag = false;
+         b_flag = false;
+
+         long Infeed_Value = (int)((float)MOTOR_Z_STEP_PER_REV * Ap / SCREW_Z + 0.5) * McSTEP_Z;
+         if (Infeed_Value == 0)
+         {
+            if (Pass_Nr == 1) Limit_Pos_Left = (Null_Z_Pos + 1);
+            else              Limit_Pos_Left = (Limit_Pos_Right + REBOUND_Z);
+         }
+         else
+         {
+            if (Pass_Nr == 1) Limit_Pos_Left = (Null_Z_Pos + Infeed_Value);
+            else              Limit_Pos_Left = (Limit_Pos_Right + REBOUND_Z + Infeed_Value);
+         }
+         Limit_Left_LED_On();
+         BeepBeep();
+         Feed_Left(a_flag, b_flag);
+      }
+      
+      else if (cycle_flag == false && Pass_Nr > Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+         
+         Limit_Pos_Left = Limit_Pos_Right + REBOUND_Z;
+         Feed_Left(a_flag, b_flag);
+
+         Limit_Left_LED_Off();
+         Limit_Right_LED_Off();
+         Limit_Pos_Left = Limit_Pos_Max;
+         Limit_Pos_Right = Limit_Pos_Min;
+         Pass_Total = 1;
+         Pass_Nr = 1;
+         Print();
+      }
+   }
+
+   else if (Motor_X_Pos == Limit_Pos_Front && Motor_Z_Pos == Limit_Pos_Left && Step_Z_flag == OFF)
+   {
+      if (Pass_Nr <= Pass_Total)
+      {
+         a_flag = false;
+         b_flag = false;
+
+         Feed_Rear(a_flag, b_flag);
+      }
+   }
+
+   else if (Motor_X_Pos == Limit_Pos_Rear && Motor_Z_Pos == Limit_Pos_Left && Step_X_flag == OFF)
+   {
+      cycle_flag = false;
+      a_flag = false;
+      b_flag = false;
+      
+      Limit_Pos_Right = (Limit_Pos_Left - REBOUND_Z);
+      Limit_Right_LED_On();
+      Feed_Right(a_flag, b_flag);
+   }
+
+   else if (Motor_X_Pos == Limit_Pos_Rear && Motor_Z_Pos == Limit_Pos_Right && Step_Z_flag == OFF)
+   {
+      a_flag = false;
+      b_flag = false;
+
+      Pass_Nr++;
+      Print();
+      Rapid_Feed_Front(a_flag, b_flag);
+   }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void Feed_Int_Front()
+{
+//
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void Feed_Int_Rear() 
+{
+//
+}
+void H_Coder()
+{
+   ///////////////
+   // Scale
+   ///////////////
+   if (Motor_Z_Pos == Null_Z_Pos + Hand_Z_Pos && Motor_X_Pos == Null_X_Pos + Hand_X_Pos)
+   {
+      if (Scale == HC_SCALE_10 && flag_Scale_x1 == ON)
+      { 
+         Hand_Count = 0;
+         Hand_Count_New = 0;
+         Hand_Count_Old = 0;
+         Hand_Z_Pos = 0;
+         Hand_X_Pos = 0;
+
+         Null_Z_Pos = Motor_Z_Pos;
+         Null_X_Pos = Motor_X_Pos;
+
+         max_OCR3A = HC_START_SPEED_1;
+         min_OCR3A = HC_MAX_SPEED_1;
+         
+         Scale = HC_SCALE_1;
+      }
+      else if (Scale == HC_SCALE_1 && flag_Scale_x10 == ON)
+      {
+         Hand_Count = 0;
+         Hand_Count_New = 0;
+         Hand_Count_Old = 0;
+         Hand_Z_Pos = 0;
+         Hand_X_Pos = 0;
+
+         Null_Z_Pos = Motor_Z_Pos;
+         Null_X_Pos = Motor_X_Pos;
+
+         max_OCR3A = HC_START_SPEED_10;
+         min_OCR3A = HC_MAX_SPEED_10;
+         
+         Scale = HC_SCALE_10;
+      }
+   }
+   
+   /////////////////
+   // active axis
+   /////////////////
+   /////////////////
+   if (hand_Z == ON)
+   {
+      Disa_INT_Hcoder();
+      //Hand_Count_New = Hand_Count;
+      if (HC_Z_DIR == 0) {Hand_Count_New = Hand_Count;}
+      else               {Hand_Count_New = Hand_Count - Hand_Count *2;}
+      Ena_INT_Hcoder();
+      
+      if (Hand_Count_New != Hand_Count_Old)
+      {
+         Hand_Count_Old = Hand_Count_New;
+
+         Hand_Z_Pos = (Hand_Count_New * Scale * MOTOR_Z_STEP_PER_REV * McSTEP_Z / SCREW_Z +McSTEP_Z /2)  & ~(McSTEP_Z - 1);
+         Brake_Compens = max_OCR3A - min_OCR3A +1;
+         Disable_INT_OCR3B();
+         Enable_INT_OCR3A();
+      } 
+
+
+      if (Motor_Z_Pos < Null_Z_Pos + Hand_Z_Pos)
+      {
+         Motor_Z_Dir = ZCW;
+         Motor_Z_CW();
+         Limit_Pos_HC = Null_Z_Pos + Hand_Z_Pos - Brake_Compens;
+         Limit_Pos = Limit_Pos_Left - Brake_Compens;
+      }
+      else if (Motor_Z_Pos > Null_Z_Pos + Hand_Z_Pos)
+      {
+         Motor_Z_Dir = ZCCW;
+         Motor_Z_CCW();
+         Limit_Pos_HC = Null_Z_Pos + Hand_Z_Pos + Brake_Compens;
+         Limit_Pos = Limit_Pos_Right + Brake_Compens;
+      }
+   }
+
+   //////////////////////////
+   else if (hand_X == ON)
+   {
+      Disa_INT_Hcoder();
+      if (HC_X_DIR == 0) {Hand_Count_New = Hand_Count;}
+      else               {Hand_Count_New = Hand_Count - Hand_Count *2;}
+      Ena_INT_Hcoder();
+      
+      if (Hand_Count_New != Hand_Count_Old)
+      {
+         Hand_Count_Old = Hand_Count_New;
+
+         Hand_X_Pos = (Hand_Count_New * Scale * MOTOR_X_STEP_PER_REV * McSTEP_X / SCREW_X +McSTEP_X /2)  & ~(McSTEP_X - 1);
+         Brake_Compens = max_OCR3A - min_OCR3A +1;
+         Disable_INT_OCR3A();
+         Enable_INT_OCR3B();
+      } 
+
+
+      if (Motor_X_Pos < Null_X_Pos + Hand_X_Pos)
+      {
+         Motor_X_Dir = CW;
+         Motor_X_CW();
+         Limit_Pos_HC = Null_X_Pos + Hand_X_Pos - Brake_Compens;
+      }
+      else if (Motor_X_Pos > Null_X_Pos + Hand_X_Pos)
+      {
+         Motor_X_Dir = CCW;
+         Motor_X_CCW();
+         Limit_Pos_HC = Null_X_Pos + Hand_X_Pos + Brake_Compens;
+      }
+   }
+      
+   /////////////////////////////////////////////////
+   else if (hand_Z == OFF && hand_X == OFF)
+   {
+     //
+   }
+}
+void Menu()
+{
+   /////// Joystick ///////////////////////////////////////////////
+   byte Joy_New = Joy_Read;
+   {
+      if      (Joy_New == B00001110) Joy_LeftPressed();
+      else if (Joy_New == B00001101) Joy_RightPressed();
+      else if (Joy_New == B00001011) Joy_UpPressed();
+      else if (Joy_New == B00000111) Joy_DownPressed();
+      else if (Joy_New == B00001111) Joy_NoPressed();
+   }
+
+      
+   /////// Mode Switch ////////////////////////////////
+   if (!Joy_Z_flag && !Joy_X_flag)
+   {
+      byte Mode_New = Mode_Read;
+      if (Mode_New != Mode_Old)
+      {
+         if      (Mode_New == B01111111) {Switch_Thread();}
+         else if (Mode_New == B10111111) {Switch_Feed();}
+         else if (Mode_New == B11011111) {Switch_aFeed();}
+         else if (Mode_New == B11101111) {Switch_Cone_L();}
+         else if (Mode_New == B11110111) {Switch_Cone_R();}
+         else if (Mode_New == B11111011) {Switch_Reserve();}
+         else if (Mode_New == B11111101) {Switch_Sphere();}
+         else if (Mode_New == B11111110) {Switch_Divider();}
+         Mode_Old = Mode_New;
+      }
+   }
+
+
+   /////// Sub Mode Switch //////////////////////////////
+   if (!Joy_Z_flag && !Joy_X_flag)
+   {
+      byte Submode_New = Submode_Read;
+      if (Submode_New != Submode_Old)
+      {
+         if      (Submode_New == B11000000) Switch_Int();
+         else if (Submode_New == B10100000) Switch_Man();
+         else if (Submode_New == B01100000) Switch_Ext();
+         Submode_Old = Submode_New;
+      }
+   }
+
+    
+   /////////// Menu Buttons //////////////////////////////////////
+   byte Button_Sel_New = Button_Sel_Read;
+   if (Button_Sel_New == Button_Sel_Old)
+   {
+      if (!Button_Sel_Read) {Key_Select_Pressed();}
+      else                  {key_sel_flag = false; Print();}
+   }
+   Button_Sel_Old = Button_Sel_New;
+
+   byte Button_New = Buttons_Read;
+   if (Button_New == Button_Old)
+   {
+      if      (Button_New == B00000111) Key_Down_Pressed();
+      else if (Button_New == B00001011) Key_Up_Pressed();
+      else if (Button_New == B00001101) Key_Right_Pressed();
+      else if (Button_New == B00001110) Key_Left_Pressed();
+      else     button_flag = false;
+   }
+   Button_Old = Button_New;
+
+
+   /////// Limit Buttons ///////////////////////////////////////
+   byte Limit_Button_New = Limit_Buttons_Read;
+   if (Limit_Button_New == Limit_Button_Old)
+   {
+      if      (Limit_Button_New == B00010101) Limit_Left_Pressed();
+      else if (Limit_Button_New == B01000101) Limit_Right_Pressed();
+      else if (Limit_Button_New == B01010001) Limit_Front_Pressed();
+      else if (Limit_Button_New == B01010100) Limit_Rear_Pressed();
+      else     limit_button_flag = false;
+   }
+   Limit_Button_Old = Limit_Button_New;
+
+
+   /////// Axis switch for GRI ////////////////////////////
+   byte Hand_Axis_New = Hand_Axis_Read;
+   if (Hand_Axis_New != Hand_Axis_Old)
+   {
+      if      (Hand_Axis_New == B00100000) {Switch_Hand_Axis_Z();}
+      else if (Hand_Axis_New == B00010000) {Switch_Hand_Axis_X();}
+      else if (Hand_Axis_New == B00110000) {Switch_Hand_Axis_No();}
+      Hand_Axis_Old = Hand_Axis_New;
+   }
+
+
+   /////// GRI Scale Switch //////////////////////
+   byte Hand_Scale_New = Hand_Scale_Read;
+   if (Hand_Scale_New != Hand_Scale_Old)
+   {
+      if      (Hand_Scale_New == B00000001) {Switch_Scale_x1();}
+      else if (Hand_Scale_New == B00000010) {Switch_Scale_x10();}
+      Hand_Scale_Old = Hand_Scale_New;
+   }
+   CLEAR_KEYB_TIMER;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Joystick Handling ********** ///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Handler Joystick Left **********
+void Joy_LeftPressed()
+{  
+   flag_j = ON;
+   Disa_INT_Hcoder();
+   Disable_INT_OCR3A();
+   Disable_INT_OCR3B();
+   hand_Z = OFF;
+   hand_X = OFF;
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+
+   ///////////////////////
+   if (Mode == Mode_Thread)
+   {
+      if (Sub_Mode_Thread == Sub_Mode_Thread_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (Spindle_Dir == CW) {Thread_Left(c_flag, d_flag);}    
+         else
+         {
+            if (!Button_Rapid) {Limit_Pos = Limit_Pos_Min;}
+            else               {Limit_Pos = Limit_Pos_Right + Brake_Compens;}
+            Thread_Right(c_flag, d_flag);
+         }
+      }
+      else if (Sub_Mode_Thread == Sub_Mode_Thread_Ext)
+      {
+         if (Spindle_Dir == CW) {Thread_Ext_Left();}    
+         else                   {Thread_Ext_Right();}
+      }
+      else if (Sub_Mode_Thread == Sub_Mode_Thread_Int)
+      {
+         if (Spindle_Dir == CW) {Thread_Int_Left();}    
+         else                   {Thread_Int_Right();}
+      }
+   }
+
+   //////////////////////////
+   else if (Mode == Mode_Feed)
+   {
+      if (Sub_Mode_Feed == Sub_Mode_Feed_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (!Button_Rapid)
+         {  
+            if (Motor_Z_Pos < (Limit_Pos_Left - ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+            {
+               feed_Z_flag = OFF;
+               if (!Step_Z_flag) {Rapid_Feed_Left(a_flag, b_flag);}
+            }
+         }
+         else
+         {
+            if (OCR5A == max_OCR5A)
+            {
+               rapid_Z_flag = OFF;
+               if (!rapid_step_Z_flag)
+               {
+                  if (Read_Z_Ena_State == false) Motor_Z_Enable();
+                  feed_Z_flag = ON;
+                  Feed_Left(a_flag, b_flag);
+               }
+            }
+         }
+      }
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Ext)
+      {
+         Feed_Ext_Left();
+      }
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Int)
+      {
+         Feed_Int_Left();
+      }  
+   }
+
+   ///////////////////////////
+   else if (Mode == Mode_aFeed)
+   {
+      if (Sub_Mode_aFeed == Sub_Mode_aFeed_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (!Button_Rapid)
+         {  
+            if (Motor_Z_Pos < (Limit_Pos_Left - ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+            {
+               feed_Z_flag = OFF;
+               if (!Step_Z_flag) {Rapid_Feed_Left(a_flag, b_flag);}
+            }
+         }
+         else
+         {
+            if (OCR4A == max_OCR4A)
+            { 
+               rapid_Z_flag = OFF;
+               if (!rapid_step_Z_flag)
+               {
+                  if (Read_Z_Ena_State == false) Motor_Z_Enable();
+                  feed_Z_flag = ON;
+                  aFeed_Left(a_flag, b_flag);
+               }
+            }
+         }
+      }
+      else if (Sub_Mode_aFeed == Sub_Mode_aFeed_Ext)
+      {
+         aFeed_Ext_Left();
+      }
+      else if (Sub_Mode_Feed == Sub_Mode_aFeed_Int)
+      {
+         aFeed_Int_Left();
+      }  
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////
+   else if ((Mode == Mode_Cone_L || Mode == Mode_Cone_R) && err_1_flag == false && err_2_flag == false)
+   {
+      if (!Button_Rapid)
+      {  
+         if (Motor_Z_Pos < (Limit_Pos_Left - ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+         {
+            feed_Z_flag = OFF;
+            if (!Step_Z_flag) {Rapid_Cone_Left(a_flag, b_flag);}
+         }
+      }
+      else
+      {
+         if (OCR5A == max_OCR5A)
+         {
+            rapid_Z_flag = OFF;
+            if (!rapid_step_Z_flag)
+            {
+               Cone_Left(a_flag, b_flag);
+            }
+         }
+      }
+   }
+
+   //////////////////////////////////////////////////////////////////////////
+   else if (Mode == Mode_Sphere && err_1_flag == false && err_2_flag == false)
+   {
+      Sphere_Ext(a_flag, b_flag);
+   }
+   
+}  
+
+
+// ********** Handler Joystick Right **********
+void Joy_RightPressed()
+{
+   flag_j = ON;
+   Disa_INT_Hcoder();
+   Disable_INT_OCR3A();
+   Disable_INT_OCR3B();
+   hand_Z = OFF;
+   hand_X = OFF;
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+
+   ////////////////////////
+   if (Mode == Mode_Thread)
+   {
+      if (Sub_Mode_Thread == Sub_Mode_Thread_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (Spindle_Dir == CW)
+         {
+            if (!Button_Rapid) {Limit_Pos = Limit_Pos_Min;}
+            else               {Limit_Pos = Limit_Pos_Right + Brake_Compens;}
+            Thread_Right(c_flag, d_flag);
+         }
+         else {Thread_Left(c_flag, d_flag);}
+      }
+      else if (Sub_Mode_Thread == Sub_Mode_Thread_Ext)
+      {
+         if (Spindle_Dir == CW) {Thread_Ext_Right();}
+         else                   {Thread_Ext_Left();}
+      }
+      else if (Sub_Mode_Thread == Sub_Mode_Thread_Int)
+      {
+         if (Spindle_Dir == CW) {Thread_Int_Right();}
+         else                   {Thread_Int_Left();}
+      }
+   }  
+
+   ///////////////////////////
+   else if (Mode == Mode_Feed)
+   {
+      if (Sub_Mode_Feed == Sub_Mode_Feed_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (!Button_Rapid)
+         {  
+            if (Motor_Z_Pos > (Limit_Pos_Right + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+            {
+               feed_Z_flag = OFF;
+               if (!Step_Z_flag) {Rapid_Feed_Right(a_flag, b_flag);}
+            }
+         }
+         else
+         {
+            if (OCR5A == max_OCR5A)
+            {
+               rapid_Z_flag = OFF;
+               if (!rapid_step_Z_flag)
+               {
+                  if (Read_Z_Ena_State == false) Motor_Z_Enable();
+                  feed_Z_flag = ON;
+                  Feed_Right(a_flag, b_flag);
+               }
+            }
+         }
+      }
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Ext)
+      {
+         Feed_Ext_Right();
+      }
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Int)
+      {
+         Feed_Int_Right();
+      }  
+   }
+
+   ////////////////////////////
+   else if (Mode == Mode_aFeed)
+   {
+      if (Sub_Mode_aFeed == Sub_Mode_aFeed_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (!Button_Rapid)
+         {  
+            if (Motor_Z_Pos > (Limit_Pos_Right + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+            {
+               feed_Z_flag = OFF;
+               if (!Step_Z_flag) {Rapid_Feed_Right(a_flag, b_flag);}
+            }
+         }
+         else
+         {
+            if (OCR4A == max_OCR4A)
+            {
+               rapid_Z_flag = OFF;
+               if (!rapid_step_Z_flag)
+               {
+                  if (Read_Z_Ena_State == false) Motor_Z_Enable();
+                  feed_Z_flag = ON;
+                  aFeed_Right(a_flag, b_flag);
+               }
+            }
+         }
+      }
+      else if (Sub_Mode_aFeed == Sub_Mode_aFeed_Ext)
+      {
+         aFeed_Ext_Right();
+      }
+      else if (Sub_Mode_aFeed == Sub_Mode_aFeed_Int)
+      {
+         aFeed_Int_Right();
+      }  
+   }
+
+   ////////////////////////////////////////////////////////////////////////////////////////////////////
+   else if ((Mode == Mode_Cone_L || Mode == Mode_Cone_R) && err_1_flag == false && err_2_flag == false)
+   {
+      if (!Button_Rapid)
+      {
+         if (Motor_Z_Pos > (Limit_Pos_Right + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+         {
+            feed_Z_flag = OFF;
+            if (!Step_Z_flag) {Rapid_Cone_Right(a_flag, b_flag);}
+         }
+      }
+      else
+      {
+         if (OCR5A == max_OCR5A)
+         {
+            rapid_Z_flag = OFF;
+            if (!rapid_step_Z_flag)
+            {
+               Cone_Right(a_flag, b_flag);
+            }
+         }
+      }
+   }
+}
+
+
+// ********** Handler Joystick Up **********
+void Joy_UpPressed()
+{
+   flag_j = ON;
+   Disa_INT_Hcoder();
+   Disable_INT_OCR3A();
+   Disable_INT_OCR3B();
+   hand_X = OFF;
+   hand_Z = OFF;
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+
+   ///////////////////////
+   if (Mode == Mode_Thread)
+   {  
+      if (Sub_Mode_Thread == Sub_Mode_Thread_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (Spindle_Dir == CW) {Thread_Front(c_flag, d_flag);}
+         else                   {Thread_Rear(c_flag, d_flag);}
+      }
+   }
+
+   //////////////////////////
+   else if (Mode == Mode_Feed)
+   {
+      if (Sub_Mode_Feed == Sub_Mode_Feed_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (!Button_Rapid)
+         {
+            if (Motor_X_Pos < (Limit_Pos_Front - ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+            {  
+               feed_X_flag = OFF;
+               if (!Step_X_flag) {Rapid_Feed_Front(a_flag, b_flag);}
+            }
+         }
+         else
+         {
+            if (OCR5A == max_OCR5A)
+            {
+               rapid_X_flag = OFF;
+               if (!rapid_step_X_flag)
+               {
+                  if (Read_X_Ena_State == false) Motor_X_Enable();
+                  feed_X_flag = ON;
+                  Feed_Front(a_flag, b_flag);
+               }
+            }
+         }
+      }
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Ext)
+      {
+         Feed_Ext_Front();
+      }
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Int)
+      {
+         Feed_Int_Front();
+      } 
+   }
+
+   //////////////////////////
+   else if (Mode == Mode_aFeed)
+   {
+      if (Sub_Mode_aFeed == Sub_Mode_aFeed_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (!Button_Rapid)
+         {
+            if (Motor_X_Pos < (Limit_Pos_Front - ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+            {  
+               feed_X_flag = OFF;
+               if (!Step_X_flag) {Rapid_Feed_Front(a_flag, b_flag);}
+            }
+         }
+         else
+         {
+            if (OCR4A == max_OCR4A)
+            {
+               rapid_X_flag = OFF;
+               if (!rapid_step_X_flag)
+               {
+                  if (Read_X_Ena_State == false) Motor_X_Enable();
+                  feed_X_flag = ON;
+                  aFeed_Front(a_flag, b_flag);
+               }
+            }
+         }
+      }
+      else if (Sub_Mode_aFeed == Sub_Mode_aFeed_Ext)
+      {
+         //
+      }
+      else if (Sub_Mode_aFeed == Sub_Mode_aFeed_Int)
+      {
+         //
+      } 
+   }
+
+   //////////////////////////////////////////////////////////////////////////
+   else if (Mode == Mode_Cone_L && err_1_flag == false && err_2_flag == false)
+   {
+      if (!Button_Rapid)
+      {
+         if (Motor_X_Pos < (Limit_Pos_Front - ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+         {  
+            feed_X_flag = OFF;
+            if (!Step_X_flag) {Rapid_Feed_Front(a_flag, b_flag);}
+         }
+      }
+      else
+      {
+         if (OCR5A == max_OCR5A)
+         {
+            rapid_X_flag = OFF;
+            if (!rapid_step_X_flag)
+            {
+               if (Read_X_Ena_State == false) Motor_X_Enable();
+               feed_X_flag = ON;
+               Feed_Front(a_flag, b_flag);
+            }
+         }
+      }
+   }
+
+   //////////////////////////////////////////////////////////////////////////
+   else if (Mode == Mode_Cone_R && err_1_flag == false && err_2_flag == false)
+   {
+      if (!Button_Rapid)
+      {
+         if (Motor_X_Pos < (Limit_Pos_Front - ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+         {  
+            feed_X_flag = OFF;
+            if (!Step_X_flag) {Rapid_Feed_Front(a_flag, b_flag);}
+         }
+      }
+      else
+      {
+         if (OCR5A == max_OCR5A)
+         {
+            rapid_X_flag = OFF;
+            if (!rapid_step_X_flag)
+            {
+               if (Read_X_Ena_State == false) Motor_X_Enable();
+               feed_X_flag = ON;
+               Feed_Front(a_flag, b_flag);
+            }
+         }
+      }
+   }
+}
+
+
+// ********** Handler Joystick Down **********
+void Joy_DownPressed()
+{
+   flag_j = ON;
+   Disa_INT_Hcoder();
+   Disable_INT_OCR3A();
+   Disable_INT_OCR3B();
+   hand_X = OFF;
+   hand_Z = OFF;
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+
+   ///////////////////////
+   if (Mode == Mode_Thread)
+   {
+      if (Sub_Mode_Thread == Sub_Mode_Thread_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (Spindle_Dir == CW) {Thread_Rear(c_flag, d_flag);}
+         else                   {Thread_Front(c_flag, d_flag);}
+      }
+   }
+
+   ///////////////////////////
+   else if (Mode == Mode_Feed)
+   {
+      if (Sub_Mode_Feed == Sub_Mode_Feed_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (!Button_Rapid)
+         {
+            if (Motor_X_Pos > (Limit_Pos_Rear + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+            {  
+               feed_X_flag = OFF;
+               if (!Step_X_flag) {Rapid_Feed_Rear(a_flag, b_flag);}
+            }
+         }
+         else
+         {
+            if (OCR5A == max_OCR5A)
+            {
+               rapid_X_flag = OFF;
+               if (!rapid_step_X_flag)
+               {
+                  if (Read_X_Ena_State == false) Motor_X_Enable();
+                  feed_X_flag = ON;
+                  Feed_Rear(a_flag, b_flag);
+               }
+            }
+         }
+      }
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Ext)
+      {
+         Feed_Ext_Rear();
+      }
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Int)
+      {
+         Feed_Int_Rear();
+      }
+   }
+
+
+   ///////////////////////////
+   else if (Mode == Mode_aFeed)
+   {
+      if (Sub_Mode_aFeed == Sub_Mode_aFeed_Man && err_1_flag == false && err_2_flag == false)
+      {
+         if (!Button_Rapid)
+         {
+            if (Motor_X_Pos > (Limit_Pos_Rear + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+            {  
+               feed_X_flag = OFF;
+               if (!Step_X_flag) {Rapid_Feed_Rear(a_flag, b_flag);}
+            }
+         }
+         else
+         {
+            if (OCR4A == max_OCR4A)
+            {
+               rapid_X_flag = OFF;
+               if (!rapid_step_X_flag)
+               {
+                  if (Read_X_Ena_State == false) Motor_X_Enable();
+                  feed_X_flag = ON;
+                  aFeed_Rear(a_flag, b_flag);
+               }
+            }
+         }
+      }
+      else if (Sub_Mode_aFeed == Sub_Mode_aFeed_Ext)
+      {
+         //
+      }
+      else if (Sub_Mode_aFeed == Sub_Mode_aFeed_Int)
+      {
+         //
+      }
+   }
+
+   //////////////////////////////////////////////////////////////////////////
+   else if (Mode == Mode_Cone_L && err_1_flag == false && err_2_flag == false)
+   {
+      if (!Button_Rapid)
+      {
+         if (Motor_X_Pos > (Limit_Pos_Rear + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+         {  
+            feed_X_flag = OFF;
+            if (!Step_X_flag) {Rapid_Feed_Rear(a_flag, b_flag);}
+         }
+      }
+      else
+      {
+         if (OCR5A == max_OCR5A)
+         {
+            rapid_X_flag = OFF;
+            if (!rapid_step_X_flag)
+            {
+               if (Read_X_Ena_State == false) Motor_X_Enable();
+               feed_X_flag = ON;
+               Feed_Rear(a_flag, b_flag);
+            }
+         }
+      }
+   }
+
+   //////////////////////////////////////////////////////////////////////////
+   else if (Mode == Mode_Cone_R && err_1_flag == false && err_2_flag == false)
+   {
+      if (!Button_Rapid)
+      {
+         if (Motor_X_Pos > (Limit_Pos_Rear + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+         {  
+            feed_X_flag = OFF;
+            if (!Step_X_flag) {Rapid_Feed_Rear(a_flag, b_flag);}
+         }
+      }
+      else
+      {
+         if (OCR5A == max_OCR5A)
+         {
+            rapid_X_flag = OFF;
+            if (!rapid_step_X_flag)
+            {
+               if (Read_X_Ena_State == false) Motor_X_Enable();
+               feed_X_flag = ON;
+               Feed_Rear(a_flag, b_flag);
+            }
+         }
+      }
+   }
+}
+
+
+// ********** Handler Joystick in Neutral **********
+void Joy_NoPressed()
+{
+   if (flag_j == ON)
+   {
+      if (!Step_Z_flag && !rapid_step_Z_flag && !Step_X_flag && !rapid_step_X_flag)
+      {
+         flag_j = OFF;
+         
+         Motor_Z_Pos = ((Motor_Z_Pos + McSTEP_Z / 2) & ~(McSTEP_Z - 1));
+         Motor_X_Pos = ((Motor_X_Pos + McSTEP_X / 2) & ~(McSTEP_X - 1));
+         Null_Z_Pos = Motor_Z_Pos;
+         Null_X_Pos = Motor_X_Pos;
+
+         Motor_Z_RemovePulse();
+         Motor_X_RemovePulse();
+         Ks_Count = 0;
+         Km_Count = 0;
+         Cs_Count = 0;
+         Cm_Count = 0;
+         Repeat_Count = 0;
+         a_flag = false;
+         c_flag = false;
+         d_flag = false;
+         cycle_flag = false;
+         Pass_Nr = 1;
+         OCR5A = max_OCR5A;
+         OCR4A = max_OCR4A;
+         OCR2A = MIN_RAPID_MOTION;
+         if (!flag_hand_Z) {Motor_Z_Disable();}
+         if (!flag_hand_X) {Motor_X_Disable();}
+      }
+   }
+   
+   Joy_Z_flag = OFF;
+   Joy_X_flag = OFF;
+   feed_Z_flag = OFF;
+   feed_X_flag = OFF;
+   rapid_Z_flag = OFF;
+   rapid_X_flag = OFF;
+   b_flag = false;
+
+   
+   if (!Step_Z_flag && !rapid_step_Z_flag)
+   {
+      if (hand_Z == OFF)
+      {         
+         if (flag_hand_Z == ON)
+         {
+            hand_Z = ON;
+         }
+      }
+      H_Coder();
+   }
+
+   if (!Step_X_flag && !rapid_step_X_flag)
+   {
+      if (hand_X == OFF)
+      {
+         if (flag_hand_X == ON)
+         {
+            hand_X = ON;
+         }
+      }
+      H_Coder();
+   }
+
+
+   if (Mode == Mode_Thread)
+   {
+      //
+      if (Sub_Mode_Thread != Sub_Mode_Thread_Man)
+      {
+         //
+      }
+   }
+   
+   if (Mode == Mode_Feed || Mode == Mode_aFeed)
+   {
+      //
+      if (Sub_Mode_Feed != Sub_Mode_Feed_Man)
+      {
+         //
+      }
+   }
+
+   if (Mode == Mode_Cone_L || Mode == Mode_Cone_R)
+   {
+      if (!Step_Z_flag && !rapid_step_Z_flag)
+      {
+         rapid_step_X_flag = OFF;
+         Step_X_flag = OFF;
+      }
+   }
+
+   
+
+   if ((Mode == Mode_Thread && Sub_Mode_Thread == Sub_Mode_Thread_Man)||
+       (Mode == Mode_Feed && Sub_Mode_Feed == Sub_Mode_Feed_Man)||
+       (Mode == Mode_aFeed && Sub_Mode_aFeed == Sub_Mode_aFeed_Man) ||
+       (Mode == Mode_Cone_L && Sub_Mode_Cone == Sub_Mode_Cone_Man) ||
+       (Mode == Mode_Cone_R && Sub_Mode_Cone == Sub_Mode_Cone_Man) ||
+       (Mode == Mode_Sphere && Sub_Mode_Sphere == Sub_Mode_Sphere_Man) ||
+       (Mode == Mode_Divider))
+    {
+    //
+    }
+    else
+    {
+       Disa_INT_Hcoder();
+    }  
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Handling the Mode Switch ********** //////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Switch_Thread()
+{
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+   Null_Z_Pos = Motor_Z_Pos;
+   Null_X_Pos = Motor_X_Pos;
+   
+   Ena_INT_Thrd();
+   Mode = Mode_Thread;
+   Step_Z_flag = OFF;
+   Step_X_flag = OFF;
+   rapid_step_Z_flag = OFF;
+   rapid_step_X_flag = OFF;
+   Ks_Count = 0;
+   Km_Count = 0;
+   Repeat_Count = 0;
+   Print();
+}
+
+void Switch_Feed()
+{
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+   Null_Z_Pos = Motor_Z_Pos;
+   Null_X_Pos = Motor_X_Pos;
+   
+   Ena_INT_Z_Feed();
+   Mode = Mode_Feed;
+   Step_Z_flag = OFF;
+   Step_X_flag = OFF;
+   rapid_step_Z_flag = OFF;
+   rapid_step_X_flag = OFF;
+   Ks_Count = 0;
+   Km_Count = 0;
+   Repeat_Count = 0;
+   Pass_Total = 1;
+   Print();
+}
+
+void Switch_aFeed()
+{
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+   Null_Z_Pos = Motor_Z_Pos;
+   Null_X_Pos = Motor_X_Pos;
+   
+   Mode = Mode_aFeed;
+   Step_Z_flag = OFF;
+   Step_X_flag = OFF;
+   rapid_step_Z_flag = OFF;
+   rapid_step_X_flag = OFF;
+   Pass_Total = 1;
+   Print();
+}
+
+void Switch_Cone_L()
+{
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+   Null_Z_Pos = Motor_Z_Pos;
+   Null_X_Pos = Motor_X_Pos;
+   
+   Ena_INT_Z_Feed();
+   Mode = Mode_Cone_L;
+   Step_Z_flag = OFF;
+   Step_X_flag = OFF;
+   rapid_step_Z_flag = OFF;
+   rapid_step_X_flag = OFF;
+   Ks_Count = 0;
+   Km_Count = 0;
+   Repeat_Count = 0;
+   Pass_Total = 1;
+   Print();
+}
+
+void Switch_Cone_R()
+{
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+   Null_Z_Pos = Motor_Z_Pos;
+   Null_X_Pos = Motor_X_Pos;
+   
+   Ena_INT_Z_Feed();
+   Mode = Mode_Cone_R;
+   Step_Z_flag = OFF;
+   Step_X_flag = OFF;
+   rapid_step_Z_flag = OFF;
+   rapid_step_X_flag = OFF;
+   Ks_Count = 0;
+   Km_Count = 0;
+   Repeat_Count = 0;
+   Pass_Total = 1;
+   Print();
+}
+
+void Switch_Reserve()
+{
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+   Null_Z_Pos = Motor_Z_Pos;
+   Null_X_Pos = Motor_X_Pos;
+   
+   Mode = Mode_Reserve;
+   Print();
+}
+
+void Switch_Sphere()
+{
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+   Null_Z_Pos = Motor_Z_Pos;
+   Null_X_Pos = Motor_X_Pos;
+   
+   //   Ena_INT_Z_Feed(); //
+   Mode = Mode_Sphere;
+   Step_Z_flag = OFF;
+   Step_X_flag = OFF;
+   rapid_step_Z_flag = OFF;
+   rapid_step_X_flag = OFF;
+   Ks_Count = 0;
+   Km_Count = 0;
+   Repeat_Count = 0;
+   Pass_Total = 1;
+   Print();
+}
+
+void Switch_Divider()
+{
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+   Null_Z_Pos = Motor_Z_Pos;
+   Null_X_Pos = Motor_X_Pos;
+   
+   Ena_INT_Thrd();
+   Mode = Mode_Divider;
+   Step_Z_flag = OFF;
+   Step_X_flag = OFF;
+   rapid_step_Z_flag = OFF;
+   rapid_step_X_flag = OFF;
+   Ks_Count = 0;
+   Km_Count = 0;
+   Repeat_Count = 0;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Submode Switch Handling ********** ///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Switch_Int()
+{
+   switch (Mode) 
+   {
+      case Mode_Thread:
+      case Mode_Feed:
+      case Mode_aFeed:
+      case Mode_Cone_L:
+      case Mode_Cone_R:
+      if ((limit_Left_flag == ON && limit_Right_flag == ON) || (limit_Front_flag == ON && limit_Rear_flag == ON))
+      {
+         Sub_Mode_Thread = Sub_Mode_Thread_Int;
+         Sub_Mode_Feed = Sub_Mode_Feed_Int;
+         Sub_Mode_aFeed = Sub_Mode_aFeed_Int;
+         Sub_Mode_Cone = Sub_Mode_Cone_Int;
+         err_1_flag = false;
+         Step_Z_flag = OFF;
+         Step_X_flag = OFF;
+         rapid_step_Z_flag = OFF;
+         rapid_step_X_flag = OFF;
+         Ks_Count = 0;
+         Km_Count = 0;
+         Repeat_Count = 0;
+
+         if (Motor_Z_Pos == Limit_Pos_Right || Motor_Z_Pos == Limit_Pos_Left || Motor_X_Pos == Limit_Pos_Rear || Motor_X_Pos == Limit_Pos_Front)
+         {
+            err_2_flag = false;
+         }
+         else
+         {
+            Sub_Mode_Thread = Sub_Mode_Thread_Man;
+            Sub_Mode_Feed = Sub_Mode_Feed_Man;
+            Sub_Mode_aFeed = Sub_Mode_aFeed_Man;
+            Sub_Mode_Cone = Sub_Mode_Cone_Man;
+            err_2_flag = true;
+            Beep_Error();
+         }
+      }
+      else
+      {
+         Sub_Mode_Thread = Sub_Mode_Thread_Man;
+         Sub_Mode_Feed = Sub_Mode_Feed_Man;
+         Sub_Mode_aFeed = Sub_Mode_aFeed_Man;
+         Sub_Mode_Cone = Sub_Mode_Cone_Man;
+         err_1_flag = true;
+         Beep_Error();
+      }
+      Print();
+      break;
+
+      case Mode_Sphere:  /////////////////////////////////////////////////////////////////////////////////////
+      if (limit_Right_flag == ON && limit_Rear_flag == ON)
+      {
+         Sub_Mode_Sphere = Sub_Mode_Sphere_Int;
+         err_1_flag = false;
+         Step_Z_flag = OFF;
+         Step_X_flag = OFF;
+         Ks_Count = 0;
+         Km_Count = 0;
+         Repeat_Count = 0;
+   
+         if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear)
+         {
+            err_2_flag = false;
+         }
+         else
+         {
+            Sub_Mode_Sphere = Sub_Mode_Sphere_Man;
+            err_2_flag = true;
+            Beep_Error();
+         }
+      }
+      else
+      {
+         Sub_Mode_Sphere = Sub_Mode_Sphere_Man;
+         err_1_flag = true;
+         Beep_Error();
+      }
+      Print();
+      break;
+   }
+}
+   
+void Switch_Man()
+{  
+      switch (Mode) 
+      {
+         case Mode_Thread:
+         case Mode_Feed:
+         case Mode_aFeed:
+         case Mode_Cone_L:
+         case Mode_Cone_R:
+         case Mode_Sphere:
+         Sub_Mode_Thread = Sub_Mode_Thread_Man;
+         Sub_Mode_Feed = Sub_Mode_Feed_Man;
+         Sub_Mode_aFeed = Sub_Mode_aFeed_Man;
+         Sub_Mode_Cone = Sub_Mode_Cone_Man;
+         Sub_Mode_Sphere = Sub_Mode_Sphere_Man;
+         err_1_flag = false;
+         err_2_flag = false;
+         Step_Z_flag = OFF;
+         Step_X_flag = OFF;
+         rapid_step_Z_flag = OFF;
+         rapid_step_X_flag = OFF;
+         Ks_Count = 0;
+         Km_Count = 0;
+         Repeat_Count = 0;
+         Print();
+         break;
+      }
+}
+
+void Switch_Ext()
+{
+   switch (Mode) //////////////////////////////////////////////////////////////////////////////////////////////
+   {
+      case Mode_Thread:
+      case Mode_Feed:
+      case Mode_aFeed:
+      case Mode_Cone_L:
+      case Mode_Cone_R:
+      if ((limit_Left_flag == ON && limit_Right_flag == ON) || (limit_Front_flag == ON && limit_Rear_flag == ON))
+      {
+         Sub_Mode_Thread = Sub_Mode_Thread_Ext;
+         Sub_Mode_Feed = Sub_Mode_Feed_Ext;
+         Sub_Mode_aFeed = Sub_Mode_aFeed_Ext;
+         Sub_Mode_Cone = Sub_Mode_Cone_Ext;
+         err_1_flag = false;
+         Step_Z_flag = OFF;
+         Step_X_flag = OFF;
+         rapid_step_Z_flag = OFF;
+         rapid_step_X_flag = OFF;
+         Ks_Count = 0;
+         Km_Count = 0;
+         Repeat_Count = 0;
+
+         if (Motor_Z_Pos == Limit_Pos_Right || Motor_Z_Pos == Limit_Pos_Left || Motor_X_Pos == Limit_Pos_Rear || Motor_X_Pos == Limit_Pos_Front)
+         {
+            err_2_flag = false;
+         }
+         else
+         {
+            Sub_Mode_Thread = Sub_Mode_Thread_Man;
+            Sub_Mode_Feed = Sub_Mode_Feed_Man;
+            Sub_Mode_aFeed = Sub_Mode_aFeed_Man;
+            Sub_Mode_Cone = Sub_Mode_Cone_Man;
+            err_2_flag = true;
+            Beep_Error();
+         }
+      }
+      else
+      {
+         Sub_Mode_Thread = Sub_Mode_Thread_Man;
+         Sub_Mode_Feed = Sub_Mode_Feed_Man;
+         Sub_Mode_aFeed = Sub_Mode_aFeed_Man;
+         Sub_Mode_Cone = Sub_Mode_Cone_Man;
+         err_1_flag = true;
+         Beep_Error();
+      }
+      Print();
+      break;
+      
+      case Mode_Sphere:  /////////////////////////////////////////////////////////////////////////////////////
+      if (limit_Right_flag == ON && limit_Rear_flag == ON)
+      {
+         Sub_Mode_Sphere = Sub_Mode_Sphere_Ext;
+         err_1_flag = false;
+         Step_Z_flag = OFF;
+         Step_X_flag = OFF;
+         Ks_Count = 0;
+         Km_Count = 0;
+         Repeat_Count = 0;
+   
+         if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear)
+         {
+            err_2_flag = false;
+         }
+         else
+         {
+            Sub_Mode_Sphere = Sub_Mode_Sphere_Man;
+            err_2_flag = true;
+            Beep_Error();
+         }
+      }
+      else
+      {
+         Sub_Mode_Sphere = Sub_Mode_Sphere_Man;
+         err_1_flag = true;
+         Beep_Error();
+      }
+      Print();
+      break;
+   }
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Handling Menu Buttons ********** ///////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Select button click handler **********
+void Key_Select_Pressed()
+{
+   if (!key_sel_flag)
+   {  
+      switch (Mode) 
+      {
+         case Mode_Feed:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            //
+         }
+         break;
+        
+         case Mode_Cone_L:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            //
+         }
+         break;
+     
+         case Mode_Cone_R:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            //
+         }
+         break;
+    
+         case Mode_Thread:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            //
+         }
+         break;         
+
+         case Mode_Sphere:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            Beep();
+         }
+         break;
+         
+         case Mode_Divider:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            Enc_Pos = 0;
+            Beep();
+         }
+         break;
+      }
+      key_sel_flag = true;
+      Print();
+   }
+}
+
+// ********** Up button click handler **********
+void Key_Up_Pressed()
+{
+  if (!button_flag)
+  {
+     switch (Mode)
+     {
+        case Mode_Feed:
+        if (!Joy_Z_flag && !Joy_X_flag)
+        {
+           if (Ap < 100)      {Ap = Ap + 10;  Beep();}
+           else if (Ap < 200) {Ap = Ap + 20;  Beep();}
+           else if (Ap < 500) {Ap = Ap + 50;  Beep();}
+           else if (Ap < 900) {Ap = Ap + 100; Beep();}
+        }
+        Print();
+        break;
+      
+        case Mode_Thread:
+        if (Thread_Step < TOTAL_THREADS - 1)
+        {
+           if (!Joy_Z_flag && !Joy_X_flag)
+           {
+              Thread_Step++;
+              Ks_Count = 0;
+              Km_Count = 0;
+              Repeat_Count = 0;
+              Step_Z_flag = OFF;
+              Step_X_flag = OFF;
+              rapid_step_Z_flag = OFF;
+              rapid_step_X_flag = OFF;
+              Beep();
+           }
+        }
+        Print();
+        break;        
+
+        case Mode_Sphere:
+        if (!Joy_Z_flag && !Joy_X_flag)
+        {
+           if (!key_sel_flag)
+           {
+              if      (Sph_R_mm < 1250) {Sph_R_mm = Sph_R_mm + 25;  Beep();}
+              else if (Sph_R_mm < 2500) {Sph_R_mm = Sph_R_mm + 50;  Beep();}
+              else if (Sph_R_mm < 4750) {Sph_R_mm = Sph_R_mm + 250; Beep();}
+
+              R_Quad = Sph_R_mm * Sph_R_mm;
+              Sph_R = (MOTOR_X_STEP_PER_REV * McSTEP_X * Sph_R_mm / SCREW_X);
+           }
+           else
+           {
+              if (Cutter_Step < TOTAL_CUTTER_WIDTH-1)
+              {
+                 Cutter_Step++;
+                 Cutter_Width = Cutter_Width_array[Cutter_Step];
+                 Beep();
+              }
+           }
+        }
+        Print();
+        break;
+        
+        case Mode_Divider:
+        if (Total_Tooth < 255)
+        {
+           Total_Tooth++;
+           Current_Tooth = 1;
+           Beep();
+        }
+        Print();
+        break;
+     }
+     button_flag = true;
+  }
+}
+
+// ********** Down button click handler **********
+void Key_Down_Pressed()
+{
+   if (!button_flag)
+   {
+      switch (Mode)
+      {
+         case Mode_Feed:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            if (Ap > 500)      {Ap = Ap - 100; Beep();}
+            else if (Ap > 200) {Ap = Ap - 50;  Beep();}
+            else if (Ap > 100) {Ap = Ap - 20;  Beep();}
+            else if (Ap > 0)   {Ap = Ap - 10;  Beep();}
+         }
+         Print();
+         break;
+         
+         case Mode_Thread:
+         if (Thread_Step > 0)
+         {
+            if (!Joy_Z_flag && !Joy_X_flag)
+            {
+               Thread_Step--;
+               Ks_Count = 0;
+               Km_Count = 0;
+               Repeat_Count = 0;
+               Step_Z_flag = OFF;
+               Step_X_flag = OFF;
+               rapid_step_Z_flag = OFF;
+               rapid_step_X_flag = OFF;
+               Beep();
+            }
+         }
+         Print();
+         break;        
+
+         case Mode_Sphere:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            if (!key_sel_flag)
+            {
+               if      (Sph_R_mm > 2500) {Sph_R_mm = Sph_R_mm - 250; Beep();}
+               else if (Sph_R_mm > 1250) {Sph_R_mm = Sph_R_mm - 50;  Beep();}
+               else if (Sph_R_mm > 50)   {Sph_R_mm = Sph_R_mm - 25;  Beep();}
+               if (Sph_R_mm < Bar_R_mm) Bar_R_mm = Sph_R_mm;
+
+               R_Quad = Sph_R_mm * Sph_R_mm;
+               Sph_R = (MOTOR_X_STEP_PER_REV * McSTEP_X * Sph_R_mm / SCREW_X);   // sphere radius in steps
+            }
+            else
+            {
+               if (Cutter_Step > 0)
+               {
+                  Cutter_Step--;
+                  Cutter_Width = Cutter_Width_array[Cutter_Step];
+                  Beep();
+               }
+            }
+
+         }
+         Print();
+         break;
+        
+         case Mode_Divider:
+         if (Total_Tooth > 1)
+         {
+            Total_Tooth--;
+            Current_Tooth = 1;
+            Beep();
+         }
+         Print();
+         break;
+      }
+      button_flag = true;
+   }
+}
+
+// ********** Left button click handler **********
+void Key_Left_Pressed()
+{
+   if (!button_flag)
+   {
+      switch (Mode)
+      {
+         case Mode_Feed:
+         if (Pass_Total > 1)
+         {
+            if (!Joy_Z_flag && !Joy_X_flag)
+            {
+               Pass_Total--;
+               Beep();
+            }
+         }
+         Print();
+         break;
+
+        
+         case Mode_Cone_L:
+         case Mode_Cone_R:
+         if (Cone_Step > 0)
+         {
+            if (!Joy_Z_flag && !Joy_X_flag)
+            {
+               Cone_Step--;
+               Ks_Count = 0;
+               Km_Count = 0;
+               Repeat_Count = 0;
+               Step_Z_flag = OFF;
+               Step_X_flag = OFF;
+               rapid_step_Z_flag = OFF;
+               rapid_step_X_flag = OFF;
+               Beep();
+            }
+         }
+         Print();
+         break;
+
+         case Mode_Sphere:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            if (!key_sel_flag)
+            {
+               if (Bar_R_mm > 0)
+               {
+                  Bar_R_mm = Bar_R_mm - 25; 
+                  Bar_R = (MOTOR_X_STEP_PER_REV * McSTEP_X * Bar_R_mm / SCREW_X);
+                  Beep();
+               }
+            }
+            else
+            {
+               if (Cutting_Step > 0)
+               {
+                  Cutting_Step--;
+                  Cutting_Width = Cutting_Width_array[Cutting_Step];
+                  Beep();
+               }
+            }
+         }
+         Print();
+         break;
+     
+         case Mode_Divider:
+         if (Current_Tooth > 1)
+         {
+            Current_Tooth--;
+            Beep();
+         }
+         else if (Current_Tooth == 1)
+         {
+            Current_Tooth = Total_Tooth;
+            Beep();
+         }
+         Print();
+         break;  
+      }
+      button_flag = true;
+   }
+}
+
+// ********** Right button click handler **********
+void Key_Right_Pressed()
+{
+   if (!button_flag)
+   {
+      switch (Mode)
+      {
+         case Mode_Feed:
+         if (Pass_Total < 9)
+         {
+            if (!Joy_Z_flag && !Joy_X_flag)
+            {
+               Pass_Total++;
+               Beep();
+            }
+         }
+         Print();
+         break;
+        
+         case Mode_Cone_L:
+         case Mode_Cone_R:
+         if (Cone_Step < TOTAL_CONE - 1)
+         {
+            if (!Joy_Z_flag && !Joy_X_flag)
+            {
+               Cone_Step++;
+               Ks_Count = 0;
+               Km_Count = 0;
+               Repeat_Count = 0;
+               Step_Z_flag = OFF;
+               Step_X_flag = OFF;
+               rapid_step_Z_flag = OFF;
+               rapid_step_X_flag = OFF;
+               Beep();
+            }
+         }
+         Print();
+         break;
+
+         case Mode_Sphere:
+         if (!Joy_Z_flag && !Joy_X_flag)
+         {
+            if (!key_sel_flag)
+            {
+               if (Bar_R_mm < Sph_R_mm)
+               {
+                  Bar_R_mm = Bar_R_mm + 25;
+                  Bar_R = (MOTOR_X_STEP_PER_REV * McSTEP_X * Bar_R_mm / SCREW_X);   // undercut radius in steps
+                  Beep();
+               }
+            }
+            else
+            {
+               if (Cutting_Step < TOTAL_CUTTING_STEP-1)
+               {
+                  Cutting_Step++;
+                  Cutting_Width = Cutting_Width_array[Cutting_Step];
+                  Beep();
+               }
+            }
+         }
+         Print();
+         break;
+     
+         case Mode_Divider:
+         if (Current_Tooth < Total_Tooth)
+         {
+            Current_Tooth++;
+            Beep();
+         }
+         else if (Current_Tooth == Total_Tooth)
+         {
+            Current_Tooth = 1;
+            Beep();
+         }
+         Print();
+         break;
+      }  
+      button_flag = true;
+   }
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Processing limit buttons ********** /////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Limit_Left button click handler **********
+void Limit_Left_Pressed()
+{
+   if (!limit_button_flag)
+   {
+      limit_button_flag = true;
+      switch (Mode)
+      {
+         case Mode_Thread:
+         case Mode_Feed:
+         case Mode_aFeed:
+         case Mode_Cone_L:
+         case Mode_Cone_R:
+         if (!Joy_Z_flag && Submode_Read == B10100000)
+         { 
+            if (limit_Left_flag == OFF)
+            {
+               if (Motor_Z_Pos > (Limit_Pos_Right + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+               {
+                  limit_Left_flag = ON;
+                  Limit_Pos_Left = ((Motor_Z_Pos + McSTEP_Z / 2) & ~(McSTEP_Z - 1));
+                  Limit_Left_LED_On();
+                  Beep();
+               }
+            }
+            else
+            {
+               limit_Left_flag = OFF;
+               Limit_Pos_Left = Limit_Pos_Max;
+               Limit_Left_LED_Off();
+               Beep();
+            }
+         }
+      }
+   }
+}
+
+// ********** Limit_Right button click handler **********
+void Limit_Right_Pressed()
+{
+   if (!limit_button_flag)
+   {
+      limit_button_flag = true;
+      switch (Mode)
+      {
+         case Mode_Thread:
+         case Mode_Feed:
+         case Mode_aFeed:
+         case Mode_Cone_L:
+         case Mode_Cone_R:
+         case Mode_Sphere:
+         if (!Joy_Z_flag && Submode_Read == B10100000)
+         { 
+            if (limit_Right_flag == OFF)
+            {
+               if (Motor_Z_Pos < (Limit_Pos_Left - ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+               {
+                  limit_Right_flag = ON;
+                  Limit_Pos_Right = ((Motor_Z_Pos + McSTEP_Z / 2) & ~(McSTEP_Z - 1));
+                  Limit_Right_LED_On();
+                  Beep();
+               }
+            }
+            else
+            {
+               limit_Right_flag = OFF;
+               Limit_Pos_Right = Limit_Pos_Min;
+               Limit_Right_LED_Off();
+               Beep();
+            }
+         }
+      }
+   }
+}
+
+// ********** Limit_Front button click handler **********
+void Limit_Front_Pressed()
+{
+   if (!limit_button_flag)
+   {
+      limit_button_flag = true;
+      switch (Mode)
+      { 
+         case Mode_Thread:
+         case Mode_Feed:
+         case Mode_aFeed:
+         if (!Joy_X_flag && Submode_Read == B10100000)
+         { 
+            if (limit_Front_flag == OFF)
+            {
+               if (Motor_X_Pos > (Limit_Pos_Rear + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+               {
+                  limit_Front_flag = ON;
+                  Limit_Pos_Front = ((Motor_X_Pos + McSTEP_X / 2) & ~(McSTEP_X - 1));
+                  Limit_Front_LED_On();
+                  Beep();
+               }
+            }
+            else
+            {
+               limit_Front_flag = OFF;
+               Limit_Pos_Front = Limit_Pos_Max;
+               Limit_Front_LED_Off();
+               Beep();
+            }
+         }
+      }
+   }
+}
+
+// ********** Limit_Rear button click handler **********
+void Limit_Rear_Pressed()
+{
+   if (!limit_button_flag)
+   {
+      limit_button_flag = true;
+      switch (Mode)
+      { 
+         case Mode_Thread:
+         case Mode_Feed:
+         case Mode_aFeed:
+         case Mode_Sphere:
+         if (!Joy_X_flag && Submode_Read == B10100000)
+         { 
+            if (limit_Rear_flag == OFF)
+            {
+               if (Motor_X_Pos < (Limit_Pos_Front - ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) * 2))
+               {
+                  limit_Rear_flag = ON;
+                  Limit_Pos_Rear = ((Motor_X_Pos + McSTEP_X / 2) & ~(McSTEP_X - 1));
+                  Limit_Rear_LED_On();
+                  Beep();
+               }
+            }
+            else
+            {
+               limit_Rear_flag = OFF;
+               Limit_Pos_Rear = Limit_Pos_Min;
+               Limit_Rear_LED_Off();
+               Beep();
+            }
+         }
+      }
+   }
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** RGI axis switch processing ********** /////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Switch_Hand_Axis_Z()
+{
+   Motor_X_Disable();
+   Motor_Z_Enable();
+   
+   flag_hand_X = OFF;
+   hand_X = OFF;
+   flag_hand_Z = ON;
+
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Null_Z_Pos = Motor_Z_Pos;
+   
+   Disable_INT_OCR3B();
+   Enable_INT_OCR3A();
+   Ena_INT_Hcoder();
+}
+
+void Switch_Hand_Axis_X()
+{
+   Motor_Z_Disable();
+   Motor_X_Enable();
+   
+   flag_hand_Z = OFF;
+   hand_Z = OFF;
+   flag_hand_X = ON;
+
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_X_Pos = 0;
+   Null_X_Pos = Motor_X_Pos;
+   
+   Disable_INT_OCR3A();
+   Enable_INT_OCR3B();
+   Ena_INT_Hcoder();
+}
+
+void Switch_Hand_Axis_No()
+{
+   Motor_X_Disable();
+   Motor_Z_Disable();
+   
+   flag_hand_Z = OFF;
+   hand_Z = OFF;
+   flag_hand_X = OFF;
+   hand_X = OFF;
+
+   Hand_Count = 0;
+   Hand_Count_New = 0;
+   Hand_Count_Old = 0;
+   Hand_Z_Pos = 0;
+   Hand_X_Pos = 0;
+
+   Null_Z_Pos = Motor_Z_Pos;
+   Null_X_Pos = Motor_X_Pos;
+
+   Disa_INT_Hcoder();
+   Disable_INT_OCR3A();
+   Disable_INT_OCR3B();
+
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** RGI Scale Processing ********** /////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Switch_Scale_x1()
+{
+   flag_Scale_x10 = OFF;
+   flag_Scale_x1 = ON;
+   hand_Z = OFF;
+   hand_X = OFF;
+}
+
+void Switch_Scale_x10()
+{
+   flag_Scale_x1 = OFF;
+   flag_Scale_x10 = ON;
+   hand_Z = OFF;
+   hand_X = OFF;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ***** Print ***** /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Print()
+{
+   if (Mode == Mode_Thread)  //////////////////////////////////////////////////////////
+   {
+      snprintf(LCD_Row_1, 17, "Thrd      %s", Thread_Info[Thread_Step].Thread_Print);
+      
+      if      (Sub_Mode_Thread == Sub_Mode_Thread_Int) snprintf(LCD_Row_2, 17, "Int  Max:%s", Thread_Info[Thread_Step].Limit_Print);
+      else if (Sub_Mode_Thread == Sub_Mode_Thread_Man) snprintf(LCD_Row_2, 17, "Man  Max:%s", Thread_Info[Thread_Step].Limit_Print);
+      else if (Sub_Mode_Thread == Sub_Mode_Thread_Ext) snprintf(LCD_Row_2, 17, "Ext  Max:%s", Thread_Info[Thread_Step].Limit_Print);
+   } 
+
+  
+   else if (Mode == Mode_Feed)  //////////////////////////////////////////////////////////
+   {
+      snprintf(LCD_Row_1, 17, "Feed mm/rev %1d.%02dmm", Feed_mm/100, Feed_mm%100);
+
+      if      (Sub_Mode_Feed == Sub_Mode_Feed_Int) snprintf(LCD_Row_2, 17, "Int  Pq:%1d Ap:%1d.%02d", Pass_Total-Pass_Nr+1, Ap/100, Ap%100);
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Man) snprintf(LCD_Row_2, 17, "Man  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+      else if (Sub_Mode_Feed == Sub_Mode_Feed_Ext) snprintf(LCD_Row_2, 17, "Ext  Pq:%1d Ap:%1d.%02d", Pass_Total-Pass_Nr+1, Ap/100, Ap%100);
+   }
+
+
+   else if (Mode == Mode_aFeed)  //////////////////////////////////////////////////////////
+   {
+      snprintf(LCD_Row_1, 17, "Feed mm/min  %3d", aFeed_mm);
+      
+      if      (Sub_Mode_aFeed == Sub_Mode_aFeed_Int) snprintf(LCD_Row_2, 17, "Int  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+      else if (Sub_Mode_aFeed == Sub_Mode_aFeed_Man) snprintf(LCD_Row_2, 17, "Man  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+      else if (Sub_Mode_aFeed == Sub_Mode_aFeed_Ext) snprintf(LCD_Row_2, 17, "Ext  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+   }
+ 
+   
+   else if (Mode == Mode_Cone_L)  //////////////////////////////////////////////////////////////
+   {
+      snprintf(LCD_Row_1, 17, "Cone < %s %1d.%02dmm", Cone_Info[Cone_Step].Cone_Print, Feed_mm/100, Feed_mm%100);
+
+      if      (Sub_Mode_Cone == Sub_Mode_Cone_Int) snprintf(LCD_Row_2, 17, "Int  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+      else if (Sub_Mode_Cone == Sub_Mode_Cone_Man) snprintf(LCD_Row_2, 17, "Man  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+      else if (Sub_Mode_Cone == Sub_Mode_Cone_Ext) snprintf(LCD_Row_2, 17, "Ext  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+   }
+
+   
+   else if (Mode == Mode_Cone_R)  //////////////////////////////////////////////////////////////
+   {
+      snprintf(LCD_Row_1, 17, "Cone > %s %1d.%02dmm", Cone_Info[Cone_Step].Cone_Print, Feed_mm/100, Feed_mm%100);
+      
+      if      (Sub_Mode_Cone == Sub_Mode_Cone_Int) snprintf(LCD_Row_2, 17, "Int  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+      else if (Sub_Mode_Cone == Sub_Mode_Cone_Man) snprintf(LCD_Row_2, 17, "Man  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+      else if (Sub_Mode_Cone == Sub_Mode_Cone_Ext) snprintf(LCD_Row_2, 17, "Ext  Pq:%1d Ap:%1d.%02d", Pass_Total, Ap/100, Ap%100);
+   }
+
+
+   else if (Mode == Mode_Reserve)  //////////////////////////////////////////////////////////////
+   {
+      snprintf(LCD_Row_1, 17, "Reserve         ");
+      snprintf(LCD_Row_2, 17, "Reserve         ");
+   }
+   
+
+   else if (Mode == Mode_Sphere)  //////////////////////////////////////////////////////////////
+   {
+      if (!key_sel_flag)
+      {
+         snprintf(LCD_Row_1, 17, "Sphr %2ld.%01ldmm %1d.%02dmm", Sph_R_mm * 2 / 100, Sph_R_mm * 2 / 10 %10, Feed_mm/100, Feed_mm%100);
+
+         if      (Sub_Mode_Sphere == Sub_Mode_Sphere_Int) snprintf(LCD_Row_2, 17, "Mode not Exist  ");
+         else if (Sub_Mode_Sphere == Sub_Mode_Sphere_Man) snprintf(LCD_Row_2, 17, "     BarDia %2ld.%01ld", Bar_R_mm*2/100, Bar_R_mm*2%100);
+         else if (Sub_Mode_Sphere == Sub_Mode_Sphere_Ext) snprintf(LCD_Row_2, 17, "Ext  BarDia %2ld.%01ld", Bar_R_mm*2/100, Bar_R_mm*2%100);
+      }
+      
+      else
+      {
+         snprintf(LCD_Row_1, 17, "Cut.Width %1d.%02dmm", Cutter_Width/100, Cutter_Width%100);
+         snprintf(LCD_Row_2, 17, "Cut.StepZ %1d.%02dmm", Cutting_Width/100, Cutting_Width%100);
+      }
+   }
+
+    
+   else if (Mode == Mode_Divider)  /////////////////////////////////////////////////////////////
+   { 
+      long Spindle_Angle = Enc_Pos * 36000 / ENC_TICK;
+      long Required_Angle = 36000 * (Current_Tooth - 1) / Total_Tooth;
+      snprintf(LCD_Row_1, 17, "Req:%3ld.%02ld z:%3d", Required_Angle/100, Required_Angle%100, Total_Tooth);
+      snprintf(LCD_Row_2, 17, "Rea:%3ld.%02ld a:%3d", Spindle_Angle/100, Spindle_Angle%100, Current_Tooth);
+   }
+
+   // Print error
+   if      (err_1_flag == true) snprintf(LCD_Row_2, 17, "Limits not Set  ");
+   else if (err_2_flag == true) snprintf(LCD_Row_2, 17, "Move to Init Pos");   
+      
+   lcd.setCursor(0, 0);
+   lcd.print(LCD_Row_1);
+   lcd.print("   ");
+
+   lcd.setCursor(0, 1);
+   lcd.print(LCD_Row_2);
+   lcd.print("   ");
+}
+void Sphere_Ext(bool & a_flag, bool & b_flag)
+{
+   int Pass_Total = Sph_R_mm * 2 / Cutting_Width;
+
+   if (Motor_X_Pos == Limit_Pos_Rear && Motor_Z_Pos == Limit_Pos_Right && Step_X_flag == OFF)
+   {  
+      if (cycle_flag == false && Pass_Nr <= Pass_Total +1)
+      {
+         cycle_flag = true;
+         a_flag = false;
+         b_flag = false;
+
+         long Infeed_Value;
+         {
+            if (Pass_Nr <= Pass_Total/2) Infeed_Value = (long)((float)MOTOR_Z_STEP_PER_REV * (Cutting_Width * Pass_Nr) / SCREW_Z + 0.5) *McSTEP_Z;
+            else                         Infeed_Value = (long)((float)MOTOR_Z_STEP_PER_REV * ((Cutting_Width * (Pass_Nr-1) + Cutter_Width)) / SCREW_Z +0.5) *McSTEP_Z;
+         }
+         
+         Limit_Pos_Left = (Null_Z_Pos + Infeed_Value);
+         Limit_Left_LED_On();
+         BeepBeep();
+         Feed_Left(a_flag, b_flag);
+      }
+   }
+
+   else if (Motor_X_Pos == Limit_Pos_Rear && Motor_Z_Pos == Limit_Pos_Left && Step_Z_flag == OFF)
+   {
+      if (Pass_Nr <= Pass_Total +1)
+      {
+         a_flag = false;
+         b_flag = false;
+
+         long Infeed_Value;
+         if (Pass_Nr > Pass_Total / 2)
+         {
+            long A = Cutting_Width * (Pass_Nr - (Pass_Total/2+1));
+            float B = sqrt(R_Quad - A*A);
+            float E = (Sph_R_mm - B) * MOTOR_X_STEP_PER_REV / SCREW_X;
+            Infeed_Value = ((long)E * McSTEP_X);
+            if (Infeed_Value > Sph_R - Bar_R)
+            {
+               Infeed_Value = Sph_R - Bar_R;
+            }
+         }
+         
+         else
+         {
+            long A = Sph_R_mm - Cutting_Width * Pass_Nr;
+            float B = sqrt(R_Quad - A*A);
+            float E = (Sph_R_mm - B) * MOTOR_X_STEP_PER_REV / SCREW_X;
+            Infeed_Value = ((long)E * McSTEP_X);
+         }
+         
+         Limit_Pos_Front = (Null_X_Pos + Infeed_Value);
+         Limit_Pos_Right = Limit_Pos_Left;
+         Limit_Front_LED_On();
+         
+         Feed_Front(a_flag, b_flag);
+      }
+   }
+
+   else if (Motor_X_Pos == Limit_Pos_Front && Motor_Z_Pos == Limit_Pos_Left && Step_Z_flag == OFF)
+   {
+      cycle_flag = false;
+      a_flag = false;
+      b_flag = false;
+      
+      Limit_Pos_Rear = (Null_X_Pos - REBOUND_X);
+      Pass_Nr++;
+      if (Motor_X_Pos >= (Limit_Pos_Rear + ((MIN_RAPID_MOTION - MAX_RAPID_MOTION) * REPEAt) *2)) {Rapid_Feed_Rear(a_flag, b_flag);}
+      else                                                                                       {Feed_Rear(a_flag, b_flag);}
+   }
+
+   if (Pass_Nr > Pass_Total +1)
+   {
+      Limit_Pos_Left = Limit_Pos_Max;
+      Limit_Left_LED_Off();
+      Limit_Pos_Right = Limit_Pos_Min;
+      Limit_Right_LED_Off();
+      Limit_Pos_Front = Limit_Pos_Max;
+      Limit_Front_LED_Off();
+      Limit_Pos_Rear = Limit_Pos_Min;
+      Limit_Rear_LED_Off();
+   }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Spindle started ********** ////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Spindle()
+{
+   if (++Spindle_Count > 750) // ~~1sec.
+   {
+      Spindle_Count = 0;
+      if (Tacho_Count == Tacho_Count_Old) {spindle_flag = OFF;}
+      else                                {spindle_flag = ON;}
+      Tacho_Count_Old = Tacho_Count;
+   } 
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** Thread mode ********** //////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Thread_Left(bool & c_flag, bool & d_flag)
+{
+   if (c_flag == true) return;
+   d_flag = false;
+   c_flag = true;
+
+   Joy_X_flag = OFF;
+   if (Motor_Z_Pos < (Limit_Pos_Left - (THRD_ACCEL * REPEAt )* 2))
+   {
+      Ks_Divisor = Thread_Info[Thread_Step].Ks_Div_Z;
+      if (tmp_Ks_Divisor != Ks_Divisor)
+      {
+         tmp_Accel = THRD_ACCEL + Ks_Divisor;
+         tmp_Ks_Divisor = THRD_ACCEL + Ks_Divisor;
+      }
+      Brake_Compens = THRD_ACCEL * REPEAt + 1;
+   }
+   else
+   {
+      Ks_Divisor = THRD_ACCEL + Thread_Info[0].Ks_Div_Z;
+      tmp_Accel = Ks_Divisor;
+      tmp_Ks_Divisor = Ks_Divisor;
+      Brake_Compens = tmp_Accel - Ks_Divisor + 1;
+   }
+   
+   Km_Divisor = Thread_Info[Thread_Step].Km_Div_Z;
+   Ks_Count = 0;
+   Km_Count = 0;
+   Limit_Pos = Limit_Pos_Left - Brake_Compens;
+
+   Motor_Z_Dir = ZCW;
+   Motor_Z_CW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+   Joy_Z_flag = ON;
+}
+  
+
+void Thread_Right(bool & c_flag, bool & d_flag)
+{
+   if (d_flag == true) return;
+   c_flag = false;
+   d_flag = true;
+
+   Joy_X_flag = OFF;
+   if (Motor_Z_Pos > Limit_Pos_Right + THRD_ACCEL * REPEAt * 2 || Motor_Z_Pos <= Limit_Pos_Right)
+   {
+      Ks_Divisor = Thread_Info[Thread_Step].Ks_Div_Z;
+      if (tmp_Ks_Divisor != Ks_Divisor)
+      {
+         tmp_Accel = THRD_ACCEL + Ks_Divisor;
+         tmp_Ks_Divisor = THRD_ACCEL + Ks_Divisor;
+      }  
+      Brake_Compens = THRD_ACCEL * REPEAt + 1;
+   }
+   else
+   {
+      Ks_Divisor = THRD_ACCEL + Thread_Info[0].Ks_Div_Z;
+      tmp_Accel = Ks_Divisor;
+      tmp_Ks_Divisor = Ks_Divisor;
+      Brake_Compens = tmp_Accel - Ks_Divisor + 1;
+   }
+
+   Km_Divisor = Thread_Info[Thread_Step].Km_Div_Z;
+   Ks_Count = 0;
+   Km_Count = 0;
+   Limit_Pos = Limit_Pos_Right + Brake_Compens;
+
+   Motor_Z_Dir = ZCCW;
+   Motor_Z_CCW();
+   if (Read_Z_Ena_State == false) Motor_Z_Enable();
+   Joy_Z_flag = ON;
+}
+
+
+void Thread_Front(bool & c_flag, bool & d_flag)
+{
+   if (c_flag == true) return;
+   d_flag = false;
+   c_flag = true;
+
+   Joy_Z_flag = OFF;
+   if (Motor_X_Pos < (Limit_Pos_Front - (THRD_ACCEL * REPEAt) * 2))
+   {
+    
+      if (Sub_Mode_Thread == Sub_Mode_Thread_Man)
+      {
+         Ks_Divisor = Thread_Info[Thread_Step].Ks_Div_X;
+         Km_Divisor = Thread_Info[Thread_Step].Km_Div_X;
+      }
+      else
+      {
+         Ks_Divisor = Thread_Info[Thread_Step].Ks_Div_Z;
+         Km_Divisor = Thread_Info[Thread_Step].Km_Div_Z;
+         Ks_Divisor = (Ks_Divisor + (float)(Km_Divisor + 5000) /10000) * ((float)McSTEP_Z / McSTEP_X);
+         Km_Divisor = 0;
+      }
+
+      if (tmp_Ks_Divisor != Ks_Divisor)
+      {
+         tmp_Accel = THRD_ACCEL + Ks_Divisor;
+         tmp_Ks_Divisor = THRD_ACCEL + Ks_Divisor;
+      }   
+      Brake_Compens = THRD_ACCEL * REPEAt + 1;
+   }
+   else
+   {
+      Ks_Divisor = THRD_ACCEL + Thread_Info[0].Ks_Div_X;
+      Km_Divisor = 0;
+      tmp_Accel = Ks_Divisor;
+      tmp_Ks_Divisor = Ks_Divisor;
+      Brake_Compens = tmp_Accel - Ks_Divisor + 1;
+   }
+  
+   Ks_Count = 0;
+   Km_Count = 0;
+   Limit_Pos = Limit_Pos_Front - Brake_Compens;
+
+   Motor_X_Dir = CW;
+   Motor_X_CW();
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   Joy_X_flag = ON;
+}
+
+
+void Thread_Rear(bool & c_flag, bool & d_flag)
+{
+   if (d_flag == true) return;
+   c_flag = false;
+   d_flag = true;
+
+   Joy_Z_flag = OFF;
+   if (Motor_X_Pos > (Limit_Pos_Rear + (THRD_ACCEL * REPEAt) * 2))
+   {
+      if (Sub_Mode_Thread == Sub_Mode_Thread_Man)
+      {
+         Ks_Divisor = Thread_Info[Thread_Step].Ks_Div_X;
+         Km_Divisor = Thread_Info[Thread_Step].Km_Div_X;
+      }
+      else
+      {
+         Ks_Divisor = Thread_Info[Thread_Step].Ks_Div_Z;
+         Km_Divisor = Thread_Info[Thread_Step].Km_Div_Z;
+         Ks_Divisor = (Ks_Divisor + (float)(Km_Divisor + 5000) /10000) * ((float)McSTEP_Z / McSTEP_X);
+         Km_Divisor = 0;
+      }
+      
+      if (tmp_Ks_Divisor != Ks_Divisor)
+      {
+         tmp_Accel = THRD_ACCEL + Ks_Divisor;
+         tmp_Ks_Divisor = THRD_ACCEL + Ks_Divisor;
+      }     
+      Brake_Compens = THRD_ACCEL * REPEAt + 1;
+   }
+   else
+   {
+      Ks_Divisor = THRD_ACCEL + Thread_Info[0].Ks_Div_X;
+      Km_Divisor = 0;
+      tmp_Accel = Ks_Divisor;
+      tmp_Ks_Divisor = Ks_Divisor;
+      Brake_Compens = tmp_Accel - Ks_Divisor + 1;
+   }
+
+   Ks_Count = 0;
+   Km_Count = 0;
+   Limit_Pos = Limit_Pos_Rear + Brake_Compens;
+
+   Motor_X_Dir = CCW;
+   Motor_X_CCW();
+   if (Read_X_Ena_State == false) Motor_X_Enable();
+   Joy_X_flag = ON;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ********** "Cycle Thread" mode ********** /////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Thread_Ext_Left()
+{
+   if ((Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear) || (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Null_X_Pos))
+   {  
+      Pass_Total = Thread_Info[Thread_Step].Pass;
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         c_flag = false;
+         d_flag = false;
+         
+         float Step_mm = Thread_Info[Thread_Step].Step;
+         float Pass_Depth;
+         if(Pass_Nr == 1) {Pass_Depth = ((Step_mm * 0.866) - (Step_mm * 0.866 / 6) - (Step_mm * 0.866 / 8)) / sqrt(Pass_Total-1) * sqrt(0.3);}
+         else             {Pass_Depth = ((Step_mm * 0.866) - (Step_mm * 0.866 / 6) - (Step_mm * 0.866 / 8)) / sqrt(Pass_Total-1) * sqrt(Pass_Nr-1);}
+         long Infeed_Value = long(Pass_Depth / ((float)SCREW_X/100 / MOTOR_X_STEP_PER_REV) + 0.5) * McSTEP_X + McSTEP_X;
+
+         Limit_Pos_Front = (Null_X_Pos + Infeed_Value);
+         Limit_Front_LED_On();
+         Pass_Nr++;
+         BeepBeep();
+         Thread_Front(c_flag, d_flag);
+      }
+
+      else if ((cycle_flag == false) && (Pass_Nr > Pass_Total && Pass_Nr <= Pass_Total + PASS_FINISH))
+      {
+         cycle_flag = true;
+         c_flag = false;
+         d_flag = false;
+
+         Pass_Nr++;
+         BeepBeep();
+         Thread_Front(c_flag, d_flag);
+      }
+      
+      else if (cycle_flag == false && Pass_Nr > Pass_Total + PASS_FINISH)
+      {
+         c_flag = false;
+         d_flag = false;
+         
+         Limit_Pos_Front = Null_X_Pos;
+         Thread_Front(c_flag, d_flag);
+         
+         Limit_Front_LED_Off();
+         Limit_Rear_LED_Off();
+         Limit_Pos_Front = Limit_Pos_Max;
+         Limit_Pos_Rear = Limit_Pos_Min;         
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Front)
+   {
+      c_flag = false;
+      d_flag = false;
+
+      Thread_Left(c_flag, d_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Front)
+   {
+      cycle_flag = false;
+      c_flag = false;
+      d_flag = false;
+      
+      Limit_Pos_Rear = (Null_X_Pos - REBOUND_X);
+      Limit_Rear_LED_On();
+      
+      Thread_Rear(c_flag, d_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Rear)
+   {
+      c_flag = false;
+      d_flag = false;
+
+      Thread_Right(c_flag, d_flag);
+   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Thread_Ext_Right()  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+{
+   if ((Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Rear) || (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Null_X_Pos))
+   {  
+      Pass_Total = Thread_Info[Thread_Step].Pass;
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         c_flag = false;
+         d_flag = false;
+         
+         float Step_mm = Thread_Info[Thread_Step].Step;
+         float Pass_Depth = 0;
+         if(Pass_Nr == 1) {Pass_Depth = ((Step_mm * 0.866) - (Step_mm * 0.866 / 6) - (Step_mm * 0.866 / 8)) / sqrt(Pass_Total-1) * sqrt(0.3);}
+         else             {Pass_Depth = ((Step_mm * 0.866) - (Step_mm * 0.866 / 6) - (Step_mm * 0.866 / 8)) / sqrt(Pass_Total-1) * sqrt(Pass_Nr-1);}
+         long Infeed_Value = long(Pass_Depth / ((float)SCREW_X/100 / MOTOR_X_STEP_PER_REV) + 0.5) * McSTEP_X + McSTEP_X;
+         Limit_Pos_Front = (Null_X_Pos + Infeed_Value);
+         Limit_Front_LED_On();
+         Pass_Nr++;
+
+         BeepBeep();
+         Thread_Front(c_flag, d_flag);
+      }
+
+      else if ((cycle_flag == false) && (Pass_Nr > Pass_Total && Pass_Nr <= Pass_Total + PASS_FINISH))
+      {
+         cycle_flag = true;
+         c_flag = false;
+         d_flag = false;
+
+         Pass_Nr++;
+         BeepBeep();
+         Thread_Front(c_flag, d_flag);
+      }
+      
+      else if (cycle_flag == false && Pass_Nr > Pass_Total + PASS_FINISH)
+      {
+         c_flag = false;
+         d_flag = false;
+         
+         Limit_Pos_Front = Null_X_Pos;
+         Thread_Front(c_flag, d_flag);
+
+         Limit_Front_LED_Off();
+         Limit_Rear_LED_Off();
+         Limit_Pos_Front = Limit_Pos_Max;
+         Limit_Pos_Rear = Limit_Pos_Min;
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Front)
+   {
+      c_flag = false;
+      d_flag = false;
+
+      Thread_Right(c_flag, d_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Front)
+   {
+      cycle_flag = false;
+      c_flag = false;
+      d_flag = false;
+      
+      Limit_Pos_Rear = (Null_X_Pos - REBOUND_X);
+      Limit_Rear_LED_On();
+
+      Thread_Rear(c_flag, d_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear)
+   {
+      c_flag = false;
+      d_flag = false;
+
+      Thread_Left(c_flag, d_flag);
+   }   
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Thread_Int_Left()  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+{
+   if ((Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Front) || (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Null_X_Pos))
+   {  
+      Pass_Total = Thread_Info[Thread_Step].Pass;
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         c_flag = false;
+         d_flag = false;
+         
+         float Step_mm = Thread_Info[Thread_Step].Step;
+         float Pass_Depth = 0;
+         if(Pass_Nr == 1) {Pass_Depth = ((Step_mm * 0.866) - (Step_mm * 0.866 / 4) - (Step_mm * 0.866 / 18)) / sqrt(Pass_Total-1) * sqrt(0.3);}
+         else             {Pass_Depth = ((Step_mm * 0.866) - (Step_mm * 0.866 / 4) - (Step_mm * 0.866 / 18)) / sqrt(Pass_Total-1) * sqrt(Pass_Nr-1);}
+         long Infeed_Value = long(Pass_Depth / ((float)SCREW_X/100 / MOTOR_X_STEP_PER_REV) + 0.5) * McSTEP_X + McSTEP_X;
+         Limit_Pos_Rear = (Null_X_Pos - Infeed_Value);
+         Limit_Rear_LED_On();
+         Pass_Nr++;
+
+         BeepBeep();
+         Thread_Rear(c_flag, d_flag);
+      }
+
+      else if ((cycle_flag == false) && (Pass_Nr > Pass_Total && Pass_Nr <= Pass_Total + PASS_FINISH))
+      {
+         cycle_flag = true;
+         c_flag = false;
+         d_flag = false;
+
+         Pass_Nr++;
+         BeepBeep();
+         Thread_Rear(c_flag, d_flag);
+      }
+      
+      else if (cycle_flag == false && Pass_Nr > Pass_Total + PASS_FINISH)
+      {
+         c_flag = false;
+         d_flag = false;
+         
+         Limit_Pos_Rear = Null_X_Pos;
+         Thread_Rear(c_flag, d_flag);
+
+         Limit_Front_LED_Off();
+         Limit_Rear_LED_Off();
+         Limit_Pos_Front = Limit_Pos_Max;
+         Limit_Pos_Rear = Limit_Pos_Min;
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear)
+   {
+      c_flag = false;
+      d_flag = false;
+
+      Thread_Left(c_flag, d_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Rear)
+   {
+      cycle_flag = false;
+      c_flag = false;
+      d_flag = false;
+      
+      Limit_Pos_Front = (Null_X_Pos + REBOUND_X);
+      Limit_Front_LED_On();
+
+      Thread_Front(c_flag, d_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Front)
+   {
+      c_flag = false;
+      d_flag = false;
+
+      Thread_Right(c_flag, d_flag);
+   } 
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Thread_Int_Right()  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+{
+   if ((Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Front) || (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Null_X_Pos))
+   {  
+      Pass_Total = Thread_Info[Thread_Step].Pass ;
+      if (cycle_flag == false && Pass_Nr <= Pass_Total)
+      {
+         cycle_flag = true;
+         c_flag = false;
+         d_flag = false;
+         
+         float Step_mm = Thread_Info[Thread_Step].Step;
+         float Pass_Depth = 0;
+         if(Pass_Nr == 1) {Pass_Depth = ((Step_mm * 0.866) - (Step_mm * 0.866 / 4) - (Step_mm * 0.866 / 18)) / sqrt(Pass_Total-1) * sqrt(0.3);}
+         else             {Pass_Depth = ((Step_mm * 0.866) - (Step_mm * 0.866 / 4) - (Step_mm * 0.866 / 18)) / sqrt(Pass_Total-1) * sqrt(Pass_Nr-1);}
+         long Infeed_Value = long(Pass_Depth / ((float)SCREW_X/100 / MOTOR_X_STEP_PER_REV) + 0.5) * McSTEP_X + McSTEP_X;
+         Limit_Pos_Rear = (Null_X_Pos - Infeed_Value);
+         Limit_Rear_LED_On();
+         Pass_Nr++;
+
+         BeepBeep();
+         Thread_Rear(c_flag, d_flag);
+      }
+
+      else if ((cycle_flag == false) && (Pass_Nr > Pass_Total && Pass_Nr <= Pass_Total + PASS_FINISH))
+      {
+         cycle_flag = true;
+         c_flag = false;
+         d_flag = false;
+
+         Pass_Nr++;
+         BeepBeep();
+         Thread_Rear(c_flag, d_flag);
+      }
+      
+      else if (cycle_flag == false && Pass_Nr > Pass_Total + PASS_FINISH)
+      {
+         c_flag = false;
+         d_flag = false;
+         
+         Limit_Pos_Rear = Null_X_Pos;
+         Thread_Rear(c_flag, d_flag);
+
+         Limit_Front_LED_Off();
+         Limit_Rear_LED_Off();
+         Limit_Pos_Front = Limit_Pos_Max;
+         Limit_Pos_Rear = Limit_Pos_Min;
+      }
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Left && Motor_X_Pos == Limit_Pos_Rear)
+   {
+      c_flag = false;
+      d_flag = false;
+
+      Thread_Right(c_flag, d_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Rear)
+   {
+      cycle_flag = false;
+      c_flag = false;
+      d_flag = false;
+      
+      Limit_Pos_Front = (Null_X_Pos + REBOUND_X);
+      Limit_Front_LED_On();
+
+      Thread_Front(c_flag, d_flag);
+   }
+
+   else if (Motor_Z_Pos == Limit_Pos_Right && Motor_X_Pos == Limit_Pos_Front)
+   {
+      c_flag = false;
+      d_flag = false;
+
+      Thread_Left(c_flag, d_flag);
+   } 
+}

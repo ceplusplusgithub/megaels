@@ -1,3 +1,0 @@
-Dit is een test om git pull te kunnen testen
-
-En dit is ook een test
